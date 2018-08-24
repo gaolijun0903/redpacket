@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <title>易到</title>
+    <script>
+        if (/Android (\d+\.\d+)/.test(navigator.userAgent)){//安卓
+            var  version = parseFloat(RegExp.$1);
+            if (version>2.3){
+                var  phoneScale = parseInt(window.screen.width)/750;
+                document.write( '<meta name="viewport" content="width=750, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ',user-scalable=no">' );
+            } else {
+                document.write( '<meta name="viewport" content="width=750,user-scalable=no">' );
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=750, user-scalable=no">');
+        }
+    </script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+        p{
+            max-height: 100%;
+        }
+        h1,h2,h3,h4,h5,h6{
+            font-weight: normal;
+        }
+        a,i{
+            font-style: normal;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        .content{
+            padding:0 40px 40px 40px;
+        }
+        .redEnvMoney{
+            width: 590px;
+            padding-top:430px;
+            padding-left:15px;
+        }
+        #topBox{
+            width: 670px;
+            min-height: 604px;
+        }
+        .downloadYiDao{
+            display:block;
+            height: 80px;
+            width: 400px;
+            color: white;
+            font-size: 34px;
+            border-radius: 45px;
+            border:none;
+            line-height: 80px;
+            -webkit-appearance:none;
+            outline: none;
+            box-shadow:0 10px 64px rgba(240, 90, 72, .6);
+            background: url("<{asset:media/g2/M01/14/0C/rBEBJVir6wiIIOTcAAAAeVryRIUAAH3TQP__qkAAAFX093.png}>") no-repeat 287px center #f05a48;
+            margin:0 auto;
+        }
+        .winnersList{
+            width: 590px;
+            height: auto;
+            margin-top: 40px;
+            padding:70px 40px 50px;
+        }
+        .list{
+            padding-bottom: 50px;
+        }
+        .line{
+            width: 100%;
+            height: 1px;
+            background: #e1e1e1;
+            position: relative;
+        }
+        h4.title{
+            position: absolute;
+            font-size: 30px;
+            color: #323232;
+            width: 332px;
+            text-align: center;
+            top: -20px;
+            left: 50%;
+            margin-left: -166px;
+            height: 30px;
+            background: #fff;
+        }
+        .ruletitle{
+            width: 182px!important;
+            margin-left: -91px!important;
+        }
+        .friend{
+            width: 100%;
+            height: 80px;
+            margin: 44px 0;
+        }
+        .userHeadSmall{
+            display: block;
+            width: 80px;
+            height: 80px;
+            border-radius: 100%;
+            border:1px solid #e1e1e1;
+            float: left;
+            margin-right: 36px;
+            background:url(<{asset:media/g2/M01/13/3B/rBEBP1ild-qIf3kxAAANE-sZ5JwAAHw5AL14MoAAA0r413.png}>) no-repeat center;
+        }
+        .firendSay{
+            float: left;
+        }
+        .firendSay h5{
+            font-size: 30px;
+            color: #323232;
+            line-height: 42px;
+        }
+        .firendSay p{
+            font-size: 24px;
+            color: #888;
+        }
+        .friendMoney{
+            height: 80px;
+            width: 100px;
+            float: right;
+            text-align: right;
+        }
+        .friendMoney .money{
+            font-size: 34px;
+            color: #ff3334;
+        }
+        .friendMoney i{
+            font-size: 24px;
+            color: #323232;
+        }
+        .friendMoney .best{
+            width: 100px;
+            font-size: 22px;
+            line-height: 30px;
+            color: #FF3334;
+            height: 30px;
+            background: #ffd6d6;
+            border-radius:5px;
+            text-align: center!important;
+        }
+        .ruleDetail{
+            margin:58px 0 30px;
+            font-size: 24px;
+            color: #888;
+            line-height: 48px;
+            word-break: break-all;
+        }
+        .sponsor2{
+            font-size: 54px;
+            color: #333;
+            font-weight: 900;
+            margin:40px 0 30px;
+        }
+        .getmoney span{
+            font-size: 80px;
+            font-weight: 900;
+        }
+        .account2{
+            position: relative;
+            font-size: 30px;
+            color: #999;
+            /*line-height: 90px;*/
+        }
+        .clear{
+            width: 100%;
+            height: 23px;
+        }
+        .redEnvOver{
+            width: 590px;
+            height: auto;
+            padding: 452px 40px 30px;
+            background: url("<{asset:media/g2/M01/14/10/rBEBP1itPS2Ifl8IAAAXj1BmzBkAAH4zgGqsYoAABen973.png}>") no-repeat center 452px;
+        }
+        .redEnvOverInfo{
+            width: 100%;
+            height:auto;
+            text-align: center;
+            margin-top:140px;
+        }
+        .rongcuo{
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            background: url('<{asset:media/g2/M03/12/2D/rBEBP1h8LkuIBh-ZAABfmdZKDD4AAHSgAPvjeoAAF-x009.png}>') #dc0019 no-repeat;
+        }
+        #whiteLoading{
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+            background: #fff;
+        }
+        .moneyOne{
+            width: 100%;
+            height: 80px;
+        }
+        .moneyOne .accountMoney{
+            font-size: 60px;
+            font-weight: 900;
+        }
+        .moneyOne i{
+            font-size: 30px;
+        }
+        .cellphoneBox{
+            width: 100%;
+            height: 90px;
+            position: relative;
+        }
+        .cellphoneBox span{
+            display: block;
+            width: 220px;
+            height: 90px;
+            float: left;
+            color: #646464;
+            font-size: 26px;
+            line-height: 90px;
+            position: absolute;
+            left: 170px;
+        }
+        .coupon{
+            width: 590px;
+            min-height: 200px;
+            background: url("<{asset:media/g2/M02/14/0F/rBEBP1itK7GIWLu0AAASjpiIKs4AAH4pgPFEAEAABKm815.png}>") no-repeat center;
+            padding: 25px;
+            background-size: 100% 100%;
+            position: relative;
+        }
+        .couponLeft{
+            position: absolute;
+            top: 50%;
+            margin-top: -100px;
+            width: 140px;
+            height:200px;
+            padding-left: 60px;
+            line-height: 200px;
+            float: left;
+            background: url("<{asset:media/g2/M04/14/0F/rBEBP1itM4SIPuu-AAABmkXzfY8AAH4dgP__agAAAJY499.png}>") no-repeat 30px 100px;
+        }
+        .couponLeft span{
+            font-size: 60px;
+            color: #f05a48;
+        }
+        .couponLeft i{
+            font-size: 26px;
+        }
+        .couponRight{
+            /*position: relative;*/
+            text-align: left;
+            margin-left: 200px;
+            min-height: 140px;
+            width:330px;
+            opacity: 0.6;
+            padding:30px;
+        }
+        .couponName{
+            width:320px;
+            height:auto;
+            font-size: 30px;
+            color: #000;
+            margin-bottom: 20px;
+        }
+        .expiryTime{
+            font-size: 24px;
+            color: #999;
+            line-height: 34px;
+        }
+        .couponInfo{
+            width: 330px;
+            min-height: 82px;
+            padding-bottom: 16px;
+        }
+        .downLoadBtn{
+            width:100%;
+            height:80px;
+        }
+        .twoline{
+            padding-top: 20px;
+        }
+        .telLeft,.telRight{
+            display: block;
+            float: left;
+            height: 33px;
+            line-height: 34px;
+        }
+        .telBox{
+            width:100%;
+            height: 32px;
+            margin:40px 0 60px 30px;
+        }
+        .telLeft{
+            width:270px;
+            margin:0 20px 0 10px;
+            font-size: 30px;
+            color: #333;
+        }
+        .telRight{
+            width:272px;
+            font-size: 36px;
+            color: #f05a48;
+        }
+        .pen{
+            display: block;
+            float: right;
+            width:30px;
+            height:30px;
+            background: url("<{asset:media/g2/M03/14/0E/rBEBJVis_D-Ic44fAAACxwoVzacAAH4NAP__QwAAAL0827.png}>") no-repeat right top;
+            background-size: 100% 100%;
+        }
+        .downLoadBottom{
+            width:100%;
+            height: 90px;
+            background: #f05a48;
+            color: #fff;
+            text-align: center;
+            position:fixed;
+            left:0;
+            bottom: 0;
+            font-size: 36px;
+            line-height: 90px;
+            background: url("<{asset:media/g2/M01/14/0C/rBEBJVir6wiIIOTcAAAAeVryRIUAAH3TQP__qkAAAFX093.png}>") no-repeat 500px center #f05a48;
+        }
+        .listMoneyBox{
+            width: 100px;
+            height:45px;
+        }
+        .listMoneyBox span{
+            display: block;
+            width: 60px;
+            text-align: right;
+            height:45px;
+            float: left;
+            line-height:48px;
+            margin-right: 2px;
+        }
+        .listMoneyBox i{
+            display: block;
+            text-align: left;
+            height:45px;
+            float: left;
+            line-height:52px;
+        }
+        .redEnvOver .telBox{
+            margin:36px auto 0;
+        }
+        .redEnvOver .telLeft{
+            width: 220px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+<div class="content" id="content">
+    <div id="topBox">
+        <!--抢到红包-->
+        <div class="redEnvMoney">
+            <div class="couponBox"></div>
+
+            <div class="telBox" id="telBox">
+                <span class="telLeft">优惠券已存入您账户</span>
+                <i class="telRight"><i id="tel"></i><em class="pen"></em></i>
+            </div>
+        </div>
+    </div>
+    <div class="downLoadBtn" style="display: none">
+        <button class="downloadYiDao">立即使用</button>
+    </div>
+    <div class="winnersList">
+        <div id="friendlist" class="list" style="display: block;">
+            <div class="line">
+                <h4 class="title">看看朋友们手气如何</h4>
+            </div>
+            <div class="clear"></div>
+            <!--好友获得红包-->
+            <div class="friendBox" id="friendBox">
+
+            </div>
+        </div>
+        <div class="rule">
+            <div class="line">
+                <h4 class="title ruletitle">活动规则</h4>
+            </div>
+            <div class="ruleDetail" id="ruleDetail">
+
+            </div>
+        </div>
+    </div>
+    <div class="downLoadBottom" style="display: none">下载易到APP</div>
+</div>
+<div class="rongcuo" id='rongcuo' style="display: none;"></div>
+<div id="whiteLoading" style="display: none;"></div>
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+<script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js "></script>
+<script>
+    var wShare = {};
+    $(function() {
+        //获取url中的参数
+        function GetQueryString(name){
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if(r!=null)return  unescape(r[2]); return null;
+        }
+        var urlInfo 	=	 window.location.href;//url
+        var order_id    =   GetQueryString('order_id');
+        var tel         =   GetQueryString('tel');
+        var source      =   GetQueryString('source');
+        var zt          =   GetQueryString('zt');
+        if(zt==null||source==''||source==undefined){
+            zt = 0
+        }
+        console.log(zt)
+        var act_id = '';
+        var package_id = '';
+        var h5_appease_msg = '';
+        var rongcuo = $('#rongcuo');
+        var whiteLoading = $("#whiteLoading");
+        var content = $("#content");
+        var downLoadBottom = $(".downLoadBottom");
+        var downLoadBtn = $(".downLoadBtn");
+        whiteLoading.show();
+        $("#tel").html(tel);
+        //容错页面
+        rongcuo.click(function() {
+            window.location.reload();
+        });
+        //获取分享数据
+        var one = $.ajax({
+            type:"get",
+            url:"//testing.red-packets.yongche.Org/v1/hongbao/share?order_id="+order_id+"&source="+source+"&zt="+zt,
+//            url:"https://red-packets.yongche.com/v1/hongbao/share?order_id="+order_id+"&source="+source+"&zt="+zt,
+            dataType:'jsonp'
+        });
+        one.then(function(data) {
+            getShareData(data);
+        },function(err){alert(err)});
+        function getShareData(data){
+            console.log(data);
+            if(data.code=='000000'){
+                var resData = data.data;
+                act_id = resData.act_id;
+                package_id = resData.package_id;
+                h5_appease_msg = resData.h5_appease_msg;
+                $("body").css('background','url('+resData.h5_pic+') no-repeat top center');
+                $("#ruleDetail").html(resData.h5_rule);
+                wShare.shareImg     = resData.share_pic;
+                wShare.shareTitle   = resData.share_title;
+                wShare.shareContent = resData.share_desc;
+//                wShare.shareUrl = 'http://www.yongche.com/cms/page/getRedPocket.html?order_id='+order_id+'&source='+source+'&zt='+zt;
+                wShare.shareUrl = 'http://www.yongche.com/cms/page/get_redpacket2.html?order_id='+order_id+'&source='+source+'&zt='+zt;
+                setTimeout(function(){
+                    wxShareFn(wShare)
+                },0);
+
+                two = $.ajax({
+                    type:"get",
+//                    url:"https://red-packets.yongche.com/v1/hongbao/apply?order_id="+order_id+"&act_id="+act_id+"&package_id="+package_id+"&tel="+tel+"&source="+source+"&zt="+zt,
+                    url:"//testing.red-packets.yongche.Org/v1/hongbao/apply?order_id="+order_id+"&act_id="+act_id+"&package_id="+package_id+"&tel="+tel+"&source="+source+"&zt="+zt,
+                    //url:"https://dujianqiang.red-packets.yongche.Org/v1/hongbao/apply?order_id="+order_id+"&act_id="+act_id+"&package_id="+package_id+"&tel="+tel+"&source="+source+"&zt="+zt,
+                    dataType:'jsonp'
+                });
+                two.then(function(data) {
+                    getApplyData(data);
+                },function(err){alert(err)});
+            }
+
+        }
+
+        function getApplyData(data){
+            console.log(data);
+            var code = data.code;
+            var topBox = $("#topBox");
+            var myMoneyHTML = '';
+            if(code=='000000'){//可领取
+                var coupon_info = data.data.coupon;
+                if(coupon_info.length>0){
+                    for(var i = 0; i < coupon_info.length; i++){
+                        var coupon_amount = coupon_info[i].coupon_amount;
+                        if(coupon_amount<100){
+                            coupon_amount = coupon_amount+'.0';
+                        }
+                        if(!(coupon_info[i].web_desc["优惠金额"])){
+                            coupon_info[i].web_desc["优惠金额"]='';
+                        }
+                        if(coupon_info[i].web_desc["适用车型"]=="通用"){
+                            coupon_info[i].web_desc["适用车型"]='';
+                        }
+                        if(coupon_info[i].web_desc["适用城市"]=="通用"){
+                            coupon_info[i].web_desc["适用城市"]='';
+                        }
+                        myMoneyHTML +=
+                                '<div class="coupon">' +
+                                '<div class="couponLeft">' +
+                                '<span>'+coupon_amount+'</span>' +
+                                '</div>' +
+                                '<div class="couponRight">' +
+                                '<div class="couponInfo" id="couponInfo">' +
+                                '<p class="couponName">'+coupon_info[i].coupon_name+'</p>' +
+                                '<p class="expiryTime">'+coupon_info[i].web_desc["优惠金额"]+'</p>' +
+                                '<p class="expiryTime">'+coupon_info[i].web_desc["有效期"]+'</p>' +
+                                '<p class="expiryTime">'+coupon_info[i].web_desc["适用城市"]+'</p>' +
+                                '<p class="expiryTime">'+coupon_info[i].web_desc["适用车型"]+'</p>' +
+                                '</div></div></div>';
+
+                    }
+
+                    $(".couponBox").html(myMoneyHTML);
+                    var couponInfoHeight = document.getElementById('couponInfo').offsetHeight;
+                    var couponInfo = $('#couponInfo');
+                    if(couponInfoHeight<=114){
+                        couponInfo.addClass('twoline')
+                    }
+                    downLoadBtn.show();
+                    whiteLoading.hide();
+                    content.show();
+                } else{
+                    rongcuo.show();
+                    whiteLoading.hide();
+                }
+            } else if(code=='100114'){//红包已抢光
+                var overHTML = '<div class="redEnvOver"><div class="redEnvOverInfo"><p class="sponsor2">手慢了，红包已抢完</p><p class="account2">'+h5_appease_msg+'</p></div><div class="telBox"><span class="telLeft">您的账户：</span><i class="telRight">'+tel+'<em class="pen"></em></i></div></div>';
+                topBox.html(overHTML);
+                downLoadBottom.show();
+                whiteLoading.hide();
+                content.show();
+            } else if(code=='100103'||code=='10018'||code=='100111'){//活动过期
+                var overdueHTML = '<div class="redEnvOver"><div class="redEnvOverInfo"><p class="sponsor2">红包已过期</p><p class="account2">'+h5_appease_msg+'</p></div><div class="telBox"><span class="telLeft">您的账户：</span><i class="telRight">'+tel+'<em class="pen"></em></i></div></div>';
+                topBox.html(overdueHTML);
+                $("#friendlist").css('display','none');
+                downLoadBottom.show();
+                whiteLoading.hide();
+                content.show();
+            } else if(code=='100112'){//仅限新用户领取
+                var newUserHTML = '<div class="redEnvOver"><div class="redEnvOverInfo"><p class="sponsor2">您已经是易到老用户了</p><p class="account2">'+h5_appease_msg+'</p></div><div class="telBox"><span class="telLeft">您的账户：</span><i class="telRight">'+tel+'<em class="pen"></em></i></div></div>';
+                topBox.html(newUserHTML);
+                whiteLoading.hide();
+                downLoadBottom.show();
+                content.show();
+            } else if(code=='100120'){//已经参加过活动了
+                var newUserHTML = '<div class="redEnvOver"><div class="redEnvOverInfo"><p class="sponsor2">您已参加过本次活动了</p><p class="account2">'+h5_appease_msg+'</p></div><div class="telBox"><span class="telLeft">您的账户：</span><i class="telRight">'+tel+'<em class="pen"></em></i></div></div>';
+                topBox.html(newUserHTML);
+                whiteLoading.hide();
+                downLoadBottom.show();
+                content.show();
+            } else if(code=='100117'||code=='100202'){//不满足属性
+                var otherHTML = '<div class="redEnvOver"><div class="redEnvOverInfo"><p class="sponsor2">攒攒人品，再接再厉</p><p class="account2">'+h5_appease_msg+'</p></div><div class="telBox"><span class="telLeft">您的账户：</span><i class="telRight">'+tel+'<em class="pen"></em></i></div></div>';
+                topBox.html(otherHTML);
+                downLoadBottom.show();
+                whiteLoading.hide();
+                content.show();
+            } else{
+                whiteLoading.hide();
+                rongcuo.show();
+            }
+            //点击修改手机号按钮
+            $(".pen").click(function() {
+                localStorage.clear();
+//                window.location.href='http://www.yongche.com/cms/page/getRedPocket.html?order_id='+order_id+"&source="+source+"&zt="+zt;
+                window.location.href='http://www.yongche.com/cms/page/get_redpacket2.html?order_id='+order_id+"&source="+source+"&zt="+zt;
+            });
+            //获取好友列表
+            var three = $.ajax({
+                type:"get",
+//                url:"https://red-packets.yongche.com/v1/hongbao/UserList?order_id="+order_id+"&source="+source+"&tel="+tel,
+                url:"//testing.red-packets.yongche.Org/v1/hongbao/UserList?order_id="+order_id+"&source="+source+"&tel="+tel,
+                dataType: 'jsonp'
+            });
+            three.then(function(data){
+                getFriendList(data);
+            },function(err) {alert(err)})
+        }
+
+        function getFriendList(data){
+            console.log(data);
+            if(data.code=='000000'){
+                var userFriend = data.data.list;
+                if(userFriend.length==0){
+                    $("#friendlist").css('display','none');
+                }
+                var friendHTML = '';
+                for(var i in userFriend){
+                    if(userFriend[i].is_max==1){
+                        userFriend[i].best = 'block';
+                    } else{
+                        userFriend[i].best = 'none';
+                    }
+                    if(userFriend[i].head_image==''){
+                        userFriend[i].head_image = '<{asset:media/g2/M01/13/3B/rBEBP1ild-qIf3kxAAANE-sZ5JwAAHw5AL14MoAAA0r413.png}>';
+                    }
+                    friendHTML+='<div class="friend"><img class = "userHeadSmall" src='+userFriend[i].head_image+'><div class="firendSay"><h5>'+userFriend[i].user_name+'</h5><p>'+userFriend[i].h5_greetings_msg+'</p></div><div class="friendMoney"><p class="listMoneyBox"><span class="money">'+userFriend[i].coupon_amount+'</span><i>元</i></p><p class="best" style="display:'+userFriend[i].best+'">手气最佳</p></div></div>'
+                }
+                $('#friendBox').html(friendHTML)
+            } else if(data.code!='000000'){
+                $("#friendlist").css('display','none');
+            }
+        }
+
+        //下载跳转
+        function downLoad() {
+            ga('send', 'event', '下载app', 'click', '红包页点击下载');
+            var browser = {
+                versions: function () {
+                    var u = navigator.userAgent, app = navigator.appVersion;
+                    return { //移动终端浏览器版本信息
+                        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或uc浏览器
+                        iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
+                        iPad: u.indexOf('iPad') > -1 //是否iPad
+                    };
+                }()
+            };
+            var url='//www.yongche.com/download/yongche.php?source=3g';
+            function is_weixin(){
+                var ua = navigator.userAgent.toLowerCase();
+                if(ua.match(/MicroMessenger/i)=="micromessenger") {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            if(is_weixin()) {
+                url = "//www.yongche.com/download/yongche.php?source=3g";
+            }
+            else if (browser.versions.iPhone || browser.versions.iPad || browser.versions.ios) {
+                url = "http://itunes.apple.com/cn/app/id427555239?mt=8";
+            }
+            window.location.href=url;
+        }
+        $(".downloadYiDao").click(function() {
+            downLoad();
+        });
+        downLoadBottom.click(function() {
+            downLoad();
+        });
+    });
+</script>
+<script>
+    (function ($) {
+        $.fn.wxShare = function (oParam) {
+            var shareImg = oParam.shareImg;
+            var shareTitle = oParam.shareTitle;
+            var shareContent = oParam.shareContent;
+            var shareUrl = oParam.shareUrl;
+            $.ajax({
+                url:"//weixin.yongche.com/wechat/jssdk/config?url="+encodeURIComponent(window.location.href),
+                method:'get',
+                dataType:'jsonp'
+            }).done(function(data){
+                console.log(data);
+                if(data.code==200){
+                    wx_share(data.result);
+                }
+            }).fail(function(error){
+                //console.log(error)
+            });
+            function wx_share(jsData) {
+                wx.config({
+                    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    appId: jsData.appId, // 必填，公众号的唯一标识
+                    timestamp: jsData.timestamp, // 必填，生成签名的时间戳
+                    nonceStr: jsData.nonceStr, // 必填，生成签名的随机串
+                    signature: jsData.signature,// 必填，签名，见附录1
+                    jsApiList: ['onMenuShareAppMessage','onMenuShareTimeline','onMenuShareQQ','onMenuShareWeibo'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                });
+                wx.ready(function(){
+                    var shareData =
+                    {
+                        link:shareUrl,
+                        imgUrl:shareImg,
+                        title:shareTitle,
+                        desc:shareContent,
+                        type: '', // 分享类型,music、video或link，不填默认为link
+                        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                        success: function () {
+                            // 用户确认分享后执行的回调函数
+                        },
+                        cancel: function () {
+                            // 用户取消分享后执行的回调函数
+                        }
+                    };
+                    wx.onMenuShareAppMessage(shareData);
+                    wx.onMenuShareTimeline(shareData);
+                    wx.onMenuShareQQ(shareData);
+                    //alert('ok');
+                });
+            }
+        };
+
+        window.wxShareFn = function(oParam){
+            $.fn.wxShare(oParam);
+        }
+
+    })(jQuery);
+</script>
+<!-- GA: -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-18761483-4', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
+</html>
