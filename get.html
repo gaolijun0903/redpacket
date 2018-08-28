@@ -2,107 +2,71 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
     <title>易到</title>
-    <meta name="format-detection" content="telephone=no"/>
-    <script>
-        if (/Android (\d+\.\d+)/.test(navigator.userAgent)){//安卓
-            var  version = parseFloat(RegExp.$1);
-            if (version>2.3){
-                var  phoneScale = parseInt(window.screen.width)/750;
-                document.write( '<meta name="viewport" content="width=750, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ',user-scalable=no">' );
-            } else {
-                document.write( '<meta name="viewport" content="width=750,user-scalable=no">' );
-            }
-        } else {
-            document.write('<meta name="viewport" content="width=750, user-scalable=no">');
-        }
-    </script>
-
     <style>
-        *{
-            margin: 0;
-            padding: 0;
-            font-family: "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
-            -webkit-tap-highlight-color:transparent;
-        }
-        h1,h2,h3,h4,h5,h6{
-            font-weight: normal;
-        }
-        a,i{
-            font-style: normal;
-        }
-        html,body{
-            width: 100%;
-            height: 100%;
-        }
-        .content{
-            padding:0 80px 80px 80px;
-        }
-        .userInfo{
-            width: 590px;
-            height: 90px;
-            padding: 422px 0 36px;
-        }
-        .userHead{
-            width: 90px;
-            height: 90px;
-            background-size: 100%!important;
-            overflow: hidden;
-            border-radius: 100%;
-            background: url(<{asset:media/g2/M01/13/3B/rBEBP1ild-qIf3kxAAANE-sZ5JwAAHw5AL14MoAAA0r413.png}>) no-repeat center;
-            float: left;
-            margin-right: 20px;
-        }
+    	[v-cloak] {display: none;}
+        *{margin: 0; padding: 0; font-family: "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif; -webkit-tap-highlight-color:transparent; }
+        h1,h2,h3,h4,h5,h6{ font-weight: normal; }
+        a,i{ font-style: normal; }
+        html,body{ width: 100%; height: 100%; }
+        .wrapper{ width: 100%; height: 100%; background-size: 100%; }
+        .content{ padding:0 0.8rem 0.8rem 0.8rem; }
+        .userInfo{ width: 5.9rem; height: 0.9rem; padding: 4.22rem 0 0.36rem; }
+        .userHead{ width: 0.9rem; height: 0.9rem; overflow: hidden; border-radius: 100%; float: left; margin-right: 0.2rem; }
         .userSay{
-            height: 70px;
+            height: 0.7rem;
             float: left;
-            background: url('<{asset:media/g2/M04/14/0B/rBEBJVir9J6IJdZ6AAAFDJ3u9QcAAH2xwP_-qwAAAVU469.png}>') no-repeat top center;
-            width: 440px;
-            padding:10px 10px 10px 30px;
-            line-height: 36px;
+            background: url('https://i3.yongche.name/media/g2/M04/14/0B/rBEBJVir9J6IJdZ6AAAFDJ3u9QcAAH2xwP_-qwAAAVU469.png') no-repeat top center;
+            width: 4.4rem;
+            padding:0.1rem 0.1rem 0.1rem 0.3rem;
+            line-height: 0.36rem;
             color: #fff;
-            font-size: 26px;
+            font-size: 0.26rem;
         }
-        .userCellPhone{
-            width: 590px;
-            height: 270px;
-        }
+        .userCellPhone{ width: 5.9rem; height: 2.7rem; }
         .tel{
             width:100%;
-            height: 80px;
-            line-height:80px;
+            height: 0.8rem;
+            line-height:0.8rem;
             border: none;
-            border-radius: 20px;
+            border-radius: 0.2rem;
             outline: none;
-            font-size: 36px;
+            font-size: 0.36rem;
             text-align: center;
             color: #f05a48;
             background: #f0ebeb;
-            margin-bottom: 60px;
+            margin-bottom: 0.6rem;
         }
         .tel::-webkit-input-placeholder{
             color: #f05a48;opacity:1;
         }
         .getRedEnv{
-            height: 80px;
-            width: 400px;
+            height: 0.8rem;
+            width: 4.0rem;
             color: white;
-            font-size: 34px;
-            border-radius: 45px;
+            font-size: 0.34rem;
+            border-radius: 0.45rem;
             border:none;
-            line-height: 80px;
+            line-height: 0.8rem;
             -webkit-appearance:none;
             outline: none;
-            box-shadow:0 10px 64px rgba(240, 90, 72, .6);
-            background: url("<{asset:media/g2/M01/14/0C/rBEBJVir6wiIIOTcAAAAeVryRIUAAH3TQP__qkAAAFX093.png}>") no-repeat 267px center #f05a48;
-            margin-left:95px;
+            box-shadow:0 0.1rem 0.64rem rgba(240, 90, 72, .6);
+            background: url("https://i3.yongche.name/media/g2/M01/14/0C/rBEBJVir6wiIIOTcAAAAeVryRIUAAH3TQP__qkAAAFX093.png") no-repeat 2.67rem center #f05a48;
+            margin-left:0.95rem;
         }
         .winnersList{
-            width: 590px;
+            width: 5.9rem;
             height: auto;
             background: #fff;
-            border-radius: 20px;
-            margin-top: 40px;
+            border-radius: 0.2rem;
+            margin-top: 0.4rem;
             /*padding:70px 40px 50px;*/
         }
         .line{
@@ -113,34 +77,35 @@
         }
         h4.title{
             position: absolute;
-            font-size: 30px;
+            font-size: 0.3rem;
             color: #323232;
-            width: 332px;
+            width: 3.32rem;
             text-align: center;
-            top: -20px;
+            top: -0.2rem;
             left: 50%;
-            height: 30px;
+            height: 0.3rem;
             background: #fff;
         }
         .ruletitle{
-            width: 182px!important;
-            margin-left: -91px!important;
+            width: 1.82rem!important;
+            margin-left: -0.91rem!important;
         }
         .ruleDetial{
-            margin-top: 58px;
-            font-size: 24px;
+            margin-top: 0.58rem;
+            font-size: 0.24rem;
             color: #888;
-            line-height: 48px;
+            line-height: 0.48rem;
             word-break: break-all;
         }
-        .rongcuo{
+        .abnormal{
             width: 100%;
             height: 100%;
             position: fixed;
             top: 0;
             left: 0;
             z-index: 999;
-            background: url('<{asset:media/g2/M03/12/2D/rBEBP1h8LkuIBh-ZAABfmdZKDD4AAHSgAPvjeoAAF-x009.png}>') #dc0019 no-repeat;
+            background: url('https://i3.yongche.name/media/g2/M03/12/2D/rBEBP1h8LkuIBh-ZAABfmdZKDD4AAHSgAPvjeoAAF-x009.png') #dc0019 no-repeat;
+            background-size: 100% 100%;
         }
         #whiteLoading{
             width: 100%;
@@ -150,175 +115,237 @@
             top: 0;
             left: 0;
             z-index: 9999;
+            display: none;
         }
+.toastmsg{ position: fixed; bottom: 35%; left: 10%; width: 80%; height: 40px; line-height: 40px; background: rgba(0,0,0,0.5); color: #fff; z-index: 30; text-align: center; border-radius: 20px;font-size: 18px;}
+.slide-up-fade-enter-active { transition: all .3s ease; }
+.slide-up-fade-leave-active { transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0); }
+.slide-up-fade-enter , .slide-up-fade-leave-to { transform: translateY(100px); opacity: 0; }
     </style>
+    <script src="https://i3.yongche.name/media/g4/M04/00/21/rBEDBVsaXZOIZtJ1AAAPg6xQb3EAAAM_gBNCnkAAA-b7128.js"></script>
 </head>
 <body>
-<div class="content" id="content">
-    <div class="userInfo" id="userInfo"></div>
-    <div class="userCellPhone">
-        <input id = "cellphone" class = 'tel' type="tel" placeholder="输入手机号" maxlength='11'/></br>
-        <button class="getRedEnv" id="getRedEnv">领红包</button>
-    </div>
-    <div class="winnersList">
-        <div class="rule">
-            <div class="line">
-                <h4 class="title ruletitle">活动规则</h4>
-            </div>
-            <div class="ruleDetial" id="ruleDetial">
-
-            </div>
-        </div>
-    </div>
+<div id="app" class="wrapper" :style="{'backgroundImage':'url('+bg_pic+')'}">
+	<div class="content" id="content" v-show="!loading">
+	    <div class="userInfo" id="userInfo">
+	    	<div class="userHead"><img width="100%" height="100%" :src='head_portrait'></div>
+	    	<div class="userSay">Hi，我是{{nickname}}，发红包了，先到先得，快来抢吧~</div>
+	    </div>
+	    <div class="userCellPhone">
+	        <input id = "cellphone" class = 'tel' type="tel" placeholder="输入手机号" maxlength='11' v-model="tel"/></br>
+	        <button class="getRedEnv" id="getRedEnv" @click="getRedPacket">领红包</button>
+	    </div>
+	    <div class="winnersList">
+	        <div class="rule">
+	            <div class="line">
+	                <h4 class="title ruletitle">活动规则</h4>
+	            </div>
+	            <div class="ruleDetial" id="ruleDetial" v-html="rule_html"></div>
+	        </div>
+	    </div>
+	</div>
+	<transition name="slide-up-fade">
+		<div class="toastmsg" v-show="showToast" v-html="toastMsg"></div>
+	</transition>
+	<div id='whiteLoading' v-show="loading"></div>
+	<div class="abnormal" v-show="abnormal" @click="reload"></div>
 </div>
-<div class="rongcuo" id='rongcuo' style="display: none;"></div>
-<div id='whiteLoading'></div>
 <script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
 <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-<script>
-    var wShare = {};
-    $(function() {
-        function GetQueryString(name){
+<script src='https://cdn.bootcss.com/vue/2.5.16/vue.min.js'></script>	
+<script type="text/javascript" src="//api.map.baidu.com/api?v=2.0&ak=74f1df68a56ecbbdc6be8c1f3b6de523"></script>
+<script type="text/javascript">
+new Vue({
+  	el: '#app',
+	data:{
+		result_page_url:'http://www.yongche.com/cms/page/redpacket_list2.html', //红包领取结果页的地址
+		//share_api:'https://red-packets.yongche.com/v1/hongbao/share', //获取微信分享配置数据的接口
+		share_api:'//testing.red-packets.yongche.Org/v1/hongbao/share', //获取微信分享配置数据的接口
+		order_id:'106', //订单结束输入的order_id就是订单id，充返结束的order_id是充值之后的"recharge_transaction_id",
+		source:1,
+		zt:0, //解析之后的用户的user_id
+		tel:'',  //输入手机号
+		bg_pic:'https://i3.yongche.name/media/g2/M03/12/2D/rBEBP1h8LkuIBh-ZAABfmdZKDD4AAHSgAPvjeoAAF-x009.png', //整体背景图的地址
+		rule_html:'', //活动规则
+		nickname:'lalalala', //昵称
+		head_portrait:'https://i3.yongche.name/media/g2/M01/13/3B/rBEBP1ild-qIf3kxAAANE-sZ5JwAAHw5AL14MoAAA0r413.png', //头像
+		loading:true, //是否加载中
+		abnormal:false, //是否异常 //红包操作异常，请稍后再试
+		showToast:false,  //吐司提示框的展示与否  false-不展示，true-展示
+	  	toastMsg:'', //吐司提示信息
+	},
+	mounted: function(){
+		this.init();
+	},
+	methods:{
+		init:function(){
+			this.getCurrentPosition();
+			
+			this.order_id	=	this.GetQueryString('order_id');
+	        this.source     =   this.GetQueryString('source');
+	        this.zt         =   this.GetQueryString('zt');
+	        if(this.zt==null||this.source==''||this.source==undefined){
+            	this.zt = 0;
+	        }
+	        if(this.source==null||this.source==''||this.source==undefined||this.source=='(null)'){
+	            this.source=1;
+	        }
+	        this.order_id = 106; //TODO 测试
+	        if(localStorage.tel&&localStorage.order_id){//已经输入过手机号，直接跳转结果页
+	            var tel = localStorage.tel;
+	            window.location.href = encodeURI( this.result_page_url + "?tel=" + tel + "&order_id=" + this.order_id + "&source=" + this.source + "&zt=" + this.zt);
+	        }else{
+				this.getShareData();
+	        }
+		},
+		getCurrentPosition:function(){  //获取当前位置
+			var vm = this;
+			var geolocation = new BMap.Geolocation();
+	    	geolocation.getCurrentPosition(function(r){
+	    		if(this.getStatus() == BMAP_STATUS_SUCCESS){
+	    			vm.positionToCity(r.point.lat,r.point.lng);
+	    		}else {
+	    			vm.showToastFn('failed'+this.getStatus());
+	    		}        
+	    	},{enableHighAccuracy: true})
+		},
+		positionToCity:function(lat,lng){//经纬度转化成省市县格式
+			var vm = this;
+			$.ajax({
+	  			type:"GET",
+	  			url:vm.urlDomain+"/Common/GetCityByCoordinate",
+	  			data:{
+	  				'register_code':'',
+	  				'lat':lat,
+	  				'lng':lng
+	  			},
+                success:function(data) {
+                	if(data.code==200){
+                		if(data.msg.ret_code==200){
+                			var res = data.msg.result;
+	                		//vm.areaStrPos = res.province+','+res.city+','+res.district; //定位信息用一个变量暂存起来
+	                		conole.log(res)
+                		}else{
+                			console.log(data.msg.ret_code)
+                		}
+                	}else if(data.code==500){
+                		vm.showToastFn('服务器错误');
+                	}else if(data.code==499){//参数异常
+                		vm.showToastFn('参数异常');
+                	}
+                },
+                error:function(err){
+                    console.log(err);
+                    //vm.showToastFn('GetCityByCoordinate');
+                }
+	  		});
+		},
+		getShareData:function(){ //获取分享配置信息
+			var vm = this;
+			$.ajax({
+	            type:"get",
+	            url: this.share_api + "?order_id=" + this.order_id + "&source=" + this.source + "&zt=" + this.zt,
+	            dataType:'jsonp',
+	            success:function(res){
+	                console.log(res);
+	                if(res.code=='000000'){
+	                    var data = res.data;
+	                    var wShare = {};
+	                    wShare.shareImg     = data.share_pic;
+	                    wShare.shareTitle   = data.share_title;
+	                    wShare.shareContent = data.share_desc;
+	                    wShare.shareUrl = 'http://www.yongche.com/cms/page/get_redpacket2.html?order_id='+ vm.order_id + '&source=' + vm.source + '&zt=' + vm.zt;
+	                    
+	                    wx_share(wShare);//设置微信分享的信息
+	                    
+	                    vm.bg_pic = data.h5_pic; //整体背景图
+	                    vm.rules = data.h5_rule; //活动规则文案
+	                    vm.head_portrait = data.head_image; //头像地址
+	                    vm.nickname = data.nickname; //昵称
+	                    
+	                    vm.loading = false;
+	                    
+	                } else{
+	                    vm.loading = false;
+	                    //vm.abnormal = true;  //红包操作异常，请稍后再试  //TODO
+	                }
+	            }
+	        });
+		},
+		getRedPacket:function(){ //"领红包"
+            if(/^1(?:[38]\d{3}|4[57]\d{2}|5[0-35-9]\d{2}|6[68]\d{2}|7(?:[0-35-8]\d{2}|40[0-5])|9[89]\d{2})\d{6}$/.test(this.tel)) {
+                localStorage.tel = this.tel;
+                localStorage.order_id = this.order_id;
+                window.location.href = encodeURI( this.result_page_url + "?tel=" + this.tel + "&order_id=" + this.order_id + "&source=" + this.source + "&zt=" + this.zt);
+            } else{
+                vm.showToastFn('请输入正确手机号');
+            }
+		},
+		reload:function(){
+			window.location.reload();
+		},
+		showToastFn:function(msg){  //toast提示
+			var vm = this;
+			vm.showToast = true;
+     		vm.toastMsg = msg;
+     		setTimeout(function(){
+     			vm.showToast = false;
+     		},2000)
+		},
+        GetQueryString:function (name){//解析url参数
             var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
             var r = window.location.search.substr(1).match(reg);
             if(r!=null)return  unescape(r[2]); return null;
         }
-        var order_id	=	GetQueryString('order_id');
-        var source      =   GetQueryString('source');
-        var zt          =   GetQueryString('zt');
-        if(zt==null||source==''||source==undefined){
-            zt = 0
-        }
-        if(source==null||source==''||source==undefined||source=='(null)'){
-            source=1
-        }
-        if(localStorage.tel&&localStorage.order_id){
-            var tel = localStorage.tel;
-            window.location.href=encodeURI("http://www.yongche.com/cms/page/redpacket_list2.html?tel="+tel+"&order_id="+order_id+"&source="+source+"&zt="+zt);
-        }
-        var t = new Date().getTime();
-        var rongcuo = $("#rongcuo");
-        function reload() {
-            window.location.reload();
-        }
-        rongcuo.click(function() {
-            reload();
-        });
-        var whiteLoading = $("#whiteLoading");
-        var content = $("#content");
-        content.hide();
-        whiteLoading.show();
+  	}
+})
+</script>
+<script type="text/javascript">
+	function wx_share(shareInfo){
         $.ajax({
-            type:"get",
-//            url:"https://red-packets.yongche.com/v1/hongbao/share?order_id="+order_id+"&source="+source,
-            url:"//testing.red-packets.yongche.Org/v1/hongbao/share?order_id="+order_id+"&source="+source+"&zt="+zt,
+            url:"//weixin.yongche.com/wechat/jssdk/config?url="+encodeURIComponent(window.location.href),
+            method:'get',
             dataType:'jsonp',
             success:function(data){
-                console.log(data);
-//						alert(data.code)
-                if(data.code=='000000'){
-                    var shareData = data.data;
-                    wShare.shareImg     = shareData.share_pic;
-                    wShare.shareTitle   = shareData.share_title;
-                    wShare.shareContent = shareData.share_desc;
-                    if(source==2){
-                        wShare.shareUrl = 'http://www.yongche.com/cms/page/get_redpacket2.html?order_id='+order_id+'&source=2&zt='+zt;
-                    } else if(source==1){
-                        wShare.shareUrl = 'http://www.yongche.com/cms/page/get_redpacket2.html?order_id='+order_id+'&source=1&zt='+zt;
-                    }
-
-                    wxShareFn(wShare);
-                    var h5_pic = shareData.h5_pic;
-                    var h5_rule = shareData.h5_rule;
-                    var act_id = shareData.act_id;
-                    var package_id = shareData.package_id;
-                    $("body").css('background','url('+shareData.h5_pic+') no-repeat top center');
-                    var userHTML = '<div class="userHead"><img style="width:90px;height:90px;" src='+shareData.head_image+'></div><div class="userSay">Hi，我是'+shareData.nickname+'，发红包了，先到先得，快来抢吧~</div>';
-                    $("#userInfo").html(userHTML);
-                    //活动规则
-                    $("#ruleDetial").html(h5_rule);
-                    whiteLoading.hide();
-                    rongcuo.hide();
-                    content.show();
-                    //点击领取红包
-                    $("#getRedEnv").click(function(){
-                        console.log(act_id+package_id);
-                        var tel = $("#cellphone").val();
-                        if(/^1(3[0-9]|4[57]|5[0-35-9]|7[0135678]|8[0-9]|6[8])\d{8}$/.test(tel)){
-                            localStorage.tel=tel;
-                            localStorage.order_id=order_id;
-                            window.location.href=encodeURI("http://www.yongche.com/cms/page/redpacket_list2.html?tel="+tel+"&order_id="+order_id+"&source="+source+"&zt="+zt);
-                        } else{
-                            alert('请输入正确手机号');
-                            return false;
-                        }
-                    });
-                } else{
-                    whiteLoading.hide();
-                    rongcuo.show();
+                if(data.code==200){
+                    wx_share2(data.result,shareInfo);
                 }
-
+            },
+            error:function(error){
+                //alert('小易等您好久了，快来参加活动吧！');
             }
         });
-    })
-</script>
-<script>
-    (function ($) {
-        $.fn.wxShare = function (oParam) {
-            var shareImg = oParam.shareImg;
-            var shareTitle = oParam.shareTitle;
-            var shareContent = oParam.shareContent;
-            var shareUrl = oParam.shareUrl;
-            $.ajax({
-                url:"//weixin.yongche.com/wechat/jssdk/config?url="+encodeURIComponent(window.location.href),
-                method:'get',
-                dataType:'jsonp'
-            }).done(function(data){
-                console.log(data);
-                if(data.code==200){
-                    wx_share(data.result);
-                }
-            }).fail(function(error){
-                //console.log(error)
-            });
-            function wx_share(jsData) {
-                wx.config({
-                    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-                    appId: jsData.appId, // 必填，公众号的唯一标识
-                    timestamp: jsData.timestamp, // 必填，生成签名的时间戳
-                    nonceStr: jsData.nonceStr, // 必填，生成签名的随机串
-                    signature: jsData.signature,// 必填，签名，见附录1
-                    jsApiList: ['onMenuShareAppMessage','onMenuShareTimeline','onMenuShareQQ','onMenuShareWeibo'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-                });
-                wx.ready(function(){
-                    var shareData =
-                    {
-                        link:shareUrl,
-                        imgUrl:shareImg,
-                        title:shareTitle,
-                        desc:shareContent,
-                        type: '', // 分享类型,music、video或link，不填默认为link
-                        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-                        success: function () {
-                            // 用户确认分享后执行的回调函数
-                        },
-                        cancel: function () {
-                            // 用户取消分享后执行的回调函数
-                        }
-                    };
-                    wx.onMenuShareAppMessage(shareData);
-                    wx.onMenuShareTimeline(shareData);
-                    wx.onMenuShareQQ(shareData);
-                    //alert('ok');
-                });
-            }
-        }
-
-        window.wxShareFn = function(oParam){
-            $.fn.wxShare(oParam);
-        }
-
-    })(jQuery);
+    }
+    function wx_share2(jsData,shareInfo){
+        wx.config({
+            debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+            appId: jsData.appId, // 必填，公众号的唯一标识
+            timestamp: jsData.timestamp, // 必填，生成签名的时间戳
+            nonceStr: jsData.nonceStr, // 必填，生成签名的随机串
+            signature: jsData.signature,// 必填，签名，见附录1
+            jsApiList: ['onMenuShareAppMessage','onMenuShareTimeline','onMenuShareQQ','onMenuShareWeibo','hideMenuItems'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+        });
+        wx.ready(function(){
+            var shareData =
+                {
+                    link  : shareInfo.shareUrl,
+                    imgUrl: shareInfo.shareImg,
+                    title : shareInfo.shareTitle,
+                    desc  : shareInfo.shareContent,
+                    type  : '', // 分享类型,music、video或link，不填默认为link
+                    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                    success: function () {
+                        // 用户确认分享后执行的回调函数
+                    },
+                    cancel: function () {
+                        // 用户取消分享后执行的回调函数
+                    }
+                };
+            wx.onMenuShareAppMessage(shareData);
+            wx.onMenuShareTimeline(shareData);
+            wx.onMenuShareQQ(shareData);
+        });
+    }
 </script>
 <!-- GA: -->
 <script>
