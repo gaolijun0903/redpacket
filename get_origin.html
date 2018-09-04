@@ -179,7 +179,10 @@
         if(source==null||source==''||source==undefined||source=='(null)'){
             source=1
         }
-        var city = 'bj';
+        if(localStorage.tel&&localStorage.order_id){
+            var tel = localStorage.tel;
+            window.location.href=encodeURI("http://www.yongche.com/cms/page/redpacket_list2.html?tel="+tel+"&order_id="+order_id+"&source="+source+"&zt="+zt);
+        }
         var t = new Date().getTime();
         var rongcuo = $("#rongcuo");
         function reload() {
@@ -192,86 +195,58 @@
         var content = $("#content");
         content.hide();
         whiteLoading.show();
-        
-        function getCurrentPosition(cb){  //获取当前位置
-			var geolocation = new BMap.Geolocation();
-	    		geolocation.getCurrentPosition(function(r){
-	    			if(this.getStatus() == BMAP_STATUS_SUCCESS){
-	    				positionToCity(r.point.lat,r.point.lng,cb);
-	    			}else {
-    					alert('failed'+this.getStatus());
-	    			}        
-	    		},{enableHighAccuracy: true})
-		}
-		function positionToCity(lat,lng,cb){//经纬度转化成省市县格式
-			var vm = this;
-			$.ajax({         			url:'https://www.yongche.com/greencar/ajax/get_city.php',        			type:'POST',         			dataType:"json",         			data:{lat:lat,lng:lng},         			success:function(data){             			console.log(data);             			city=data.result.short;  
-					cb();
-				}     			}) 		}
-		getCurrentPosition(function(){
-			if(localStorage.tel&&localStorage.order_id){
-	            var tel = localStorage.tel;
-	            window.location.href=encodeURI("http://www.yongche.com/cms/page/redpacket_list2.html?tel="+tel+"&order_id="+order_id+"&source="+source+"&zt="+zt+"&city="+city);
-	        }else{
-	        		getsharedata();
-	        }
-		});
-		
-		function getsharedata(){
-			$.ajax({
-	            type:"get",
-	//            url:"https://red-packets.yongche.com/v1/hongbao/share?order_id="+order_id+"&source="+source,
-	            url:"//testing.red-packets.yongche.Org/v1/hongbao/share?order_id="+order_id+"&source="+source+"&zt="+zt,
-	            dataType:'jsonp',
-	            success:function(data){
-	                console.log(data);
-	//						alert(data.code)
-	                if(data.code=='000000'){
-	                    var shareData = data.data;
-	                    wShare.shareImg     = shareData.share_pic;
-	                    wShare.shareTitle   = shareData.share_title;
-	                    wShare.shareContent = shareData.share_desc;
-	                    if(source==2){
-	                        wShare.shareUrl = 'http://www.yongche.com/cms/page/get_redpacket2.html?order_id='+order_id+'&source=2&zt='+zt;
-	                    } else if(source==1){
-	                        wShare.shareUrl = 'http://www.yongche.com/cms/page/get_redpacket2.html?order_id='+order_id+'&source=1&zt='+zt;
-	                    }
-	
-	                    wxShareFn(wShare);
-	                    var h5_pic = shareData.h5_pic;
-	                    var h5_rule = shareData.h5_rule;
-	                    var act_id = shareData.act_id;
-	                    var package_id = shareData.package_id;
-	                    $("body").css('background','url('+shareData.h5_pic+') no-repeat top center');
-	                    var userHTML = '<div class="userHead"><img style="width:90px;height:90px;" src='+shareData.head_image+'></div><div class="userSay">Hi，我是'+shareData.nickname+'，发红包了，先到先得，快来抢吧~</div>';
-	                    $("#userInfo").html(userHTML);
-	                    //活动规则
-	                    $("#ruleDetial").html(h5_rule);
-	                    whiteLoading.hide();
-	                    rongcuo.hide();
-	                    content.show();
-	                    //点击领取红包
-	                    $("#getRedEnv").click(function(){
-	                        console.log(act_id+package_id);
-	                        var tel = $("#cellphone").val();
-	                        if(/^1(3[0-9]|4[57]|5[0-35-9]|7[0135678]|8[0-9]|6[8])\d{8}$/.test(tel)){
-	                            localStorage.tel=tel;
-	                            localStorage.order_id=order_id;
-	                            window.location.href=encodeURI("http://www.yongche.com/cms/page/redpacket_list2.html?tel="+tel+"&order_id="+order_id+"&source="+source+"&zt="+zt);
-	                        } else{
-	                            alert('请输入正确手机号');
-	                            return false;
-	                        }
-	                    });
-	                } else{
-	                    whiteLoading.hide();
-	                    rongcuo.show();
-	                }
-	
-	            }
-	        });
-		}
-	        
+        $.ajax({
+            type:"get",
+//            url:"https://red-packets.yongche.com/v1/hongbao/share?order_id="+order_id+"&source="+source,
+            url:"//testing.red-packets.yongche.Org/v1/hongbao/share?order_id="+order_id+"&source="+source+"&zt="+zt,
+            dataType:'jsonp',
+            success:function(data){
+                console.log(data);
+//						alert(data.code)
+                if(data.code=='000000'){
+                    var shareData = data.data;
+                    wShare.shareImg     = shareData.share_pic;
+                    wShare.shareTitle   = shareData.share_title;
+                    wShare.shareContent = shareData.share_desc;
+                    if(source==2){
+                        wShare.shareUrl = 'http://www.yongche.com/cms/page/get_redpacket2.html?order_id='+order_id+'&source=2&zt='+zt;
+                    } else if(source==1){
+                        wShare.shareUrl = 'http://www.yongche.com/cms/page/get_redpacket2.html?order_id='+order_id+'&source=1&zt='+zt;
+                    }
+
+                    wxShareFn(wShare);
+                    var h5_pic = shareData.h5_pic;
+                    var h5_rule = shareData.h5_rule;
+                    var act_id = shareData.act_id;
+                    var package_id = shareData.package_id;
+                    $("body").css('background','url('+shareData.h5_pic+') no-repeat top center');
+                    var userHTML = '<div class="userHead"><img style="width:90px;height:90px;" src='+shareData.head_image+'></div><div class="userSay">Hi，我是'+shareData.nickname+'，发红包了，先到先得，快来抢吧~</div>';
+                    $("#userInfo").html(userHTML);
+                    //活动规则
+                    $("#ruleDetial").html(h5_rule);
+                    whiteLoading.hide();
+                    rongcuo.hide();
+                    content.show();
+                    //点击领取红包
+                    $("#getRedEnv").click(function(){
+                        console.log(act_id+package_id);
+                        var tel = $("#cellphone").val();
+                        if(/^1(3[0-9]|4[57]|5[0-35-9]|7[0135678]|8[0-9]|6[8])\d{8}$/.test(tel)){
+                            localStorage.tel=tel;
+                            localStorage.order_id=order_id;
+                            window.location.href=encodeURI("http://www.yongche.com/cms/page/redpacket_list2.html?tel="+tel+"&order_id="+order_id+"&source="+source+"&zt="+zt);
+                        } else{
+                            alert('请输入正确手机号');
+                            return false;
+                        }
+                    });
+                } else{
+                    whiteLoading.hide();
+                    rongcuo.show();
+                }
+
+            }
+        });
     })
 </script>
 <script>

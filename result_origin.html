@@ -10,158 +10,186 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="format-detection" content="telephone=no">
     <title>易到</title>
-    <script src="https://i3.yongche.name/media/g4/M04/00/21/rBEDBVsaXZOIZtJ1AAAPg6xQb3EAAAM_gBNCnkAAA-b7128.js"></script>
+    <script>
+        if (/Android (\d+\.\d+)/.test(navigator.userAgent)){//安卓
+            var  version = parseFloat(RegExp.$1);
+            if (version>2.3){
+                var  phoneScale = parseInt(window.screen.width)/750;
+                document.write( '<meta name="viewport" content="width=750, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ',user-scalable=no">' );
+            } else {
+                document.write( '<meta name="viewport" content="width=750,user-scalable=no">' );
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=750, user-scalable=no">');
+        }
+    </script>
     <style>
-        [v-cloak] {display: none;}
-        *{margin: 0; padding: 0; font-family: "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif; -webkit-tap-highlight-color:transparent; }
-        h1,h2,h3,h4,h5,h6{ font-weight: normal; }
-        a,i{ font-style: normal; }
-        html,body{ width: 100%; height: 100%; }
-        .content{ padding:0 0.8rem 0.8rem 0.8rem; }
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+        p{
+            max-height: 100%;
+        }
+        h1,h2,h3,h4,h5,h6{
+            font-weight: normal;
+        }
+        a,i{
+            font-style: normal;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        .content{
+            padding:0 40px 40px 40px;
+        }
         .redEnvMoney{
-            width: 5.90rem;
-            padding-top:4.30rem;
-            padding-left:0.15rem;
+            width: 590px;
+            padding-top:430px;
+            padding-left:15px;
         }
         #topBox{
-            width: 6.70rem;
-            min-height: 6.04rem;
+            width: 670px;
+            min-height: 604px;
         }
         .downloadYiDao{
             display:block;
-            height: 0.80rem;
-            width: 4.00rem;
+            height: 80px;
+            width: 400px;
             color: white;
-            font-size: 0.34rem;
-            border-radius: 0.45rem;
+            font-size: 34px;
+            border-radius: 45px;
             border:none;
-            line-height: 0.80rem;
+            line-height: 80px;
             -webkit-appearance:none;
             outline: none;
-            box-shadow:0 0.10rem 0.64rem rgba(240, 90, 72, .6);
-            background: url("https://i3.yongche.name/media/g2/M01/14/0C/rBEBJVir6wiIIOTcAAAAeVryRIUAAH3TQP__qkAAAFX093.png") no-repeat 2.87rem center #f05a48;
+            box-shadow:0 10px 64px rgba(240, 90, 72, .6);
+            background: url("<{asset:media/g2/M01/14/0C/rBEBJVir6wiIIOTcAAAAeVryRIUAAH3TQP__qkAAAFX093.png}>") no-repeat 287px center #f05a48;
             margin:0 auto;
         }
         .winnersList{
-            width: 5.90rem;
+            width: 590px;
             height: auto;
-            margin-top: 0.40rem;
-            padding:0.70rem 0.40rem 0.50rem;
+            margin-top: 40px;
+            padding:70px 40px 50px;
         }
         .list{
-            padding-bottom: 0.50rem;
+            padding-bottom: 50px;
         }
         .line{
             width: 100%;
-            height: 0.01rem;
+            height: 1px;
             background: #e1e1e1;
             position: relative;
         }
         h4.title{
             position: absolute;
-            font-size: 0.30rem;
+            font-size: 30px;
             color: #323232;
-            width: 3.32rem;
+            width: 332px;
             text-align: center;
-            top: -0.20rem;
+            top: -20px;
             left: 50%;
-            margin-left: -1.66rem;
-            height: 0.30rem;
+            margin-left: -166px;
+            height: 30px;
             background: #fff;
         }
         .ruletitle{
-            width: 1.82rem!important;
-            margin-left: -0.91rem!important;
+            width: 182px!important;
+            margin-left: -91px!important;
         }
         .friend{
             width: 100%;
-            height: 0.80rem;
-            margin: 0.44rem 0;
+            height: 80px;
+            margin: 44px 0;
         }
         .userHeadSmall{
             display: block;
-            width: 0.80rem;
-            height: 0.80rem;
+            width: 80px;
+            height: 80px;
             border-radius: 100%;
-            border:0.01rem solid #e1e1e1;
+            border:1px solid #e1e1e1;
             float: left;
-            margin-right: 0.36rem;
-            background:url(https://i3.yongche.name/media/g2/M01/13/3B/rBEBP1ild-qIf3kxAAANE-sZ5JwAAHw5AL14MoAAA0r413.png) no-repeat center;
+            margin-right: 36px;
+            background:url(<{asset:media/g2/M01/13/3B/rBEBP1ild-qIf3kxAAANE-sZ5JwAAHw5AL14MoAAA0r413.png}>) no-repeat center;
         }
         .firendSay{
             float: left;
         }
         .firendSay h5{
-            font-size: 0.30rem;
+            font-size: 30px;
             color: #323232;
-            line-height: 0.42rem;
+            line-height: 42px;
         }
         .firendSay p{
-            font-size: 0.24rem;
+            font-size: 24px;
             color: #888;
         }
         .friendMoney{
-            height: 0.80rem;
-            width: 1.00rem;
+            height: 80px;
+            width: 100px;
             float: right;
             text-align: right;
         }
         .friendMoney .money{
-            font-size: 0.34rem;
+            font-size: 34px;
             color: #ff3334;
         }
         .friendMoney i{
-            font-size: 0.24rem;
+            font-size: 24px;
             color: #323232;
         }
         .friendMoney .best{
-            width: 1.00rem;
-            font-size: 0.22rem;
-            line-height: 0.30rem;
+            width: 100px;
+            font-size: 22px;
+            line-height: 30px;
             color: #FF3334;
-            height: 0.30rem;
+            height: 30px;
             background: #ffd6d6;
-            border-radius:0.05rem;
+            border-radius:5px;
             text-align: center!important;
         }
         .ruleDetail{
-            margin:0.58rem 0 0.30rem;
-            font-size: 0.24rem;
+            margin:58px 0 30px;
+            font-size: 24px;
             color: #888;
-            line-height: 0.48rem;
+            line-height: 48px;
             word-break: break-all;
         }
         .sponsor2{
-            font-size: 0.54rem;
+            font-size: 54px;
             color: #333;
             font-weight: 900;
-            margin:0.40rem 0 0.30rem;
+            margin:40px 0 30px;
         }
         .getmoney span{
-            font-size: 0.80rem;
+            font-size: 80px;
             font-weight: 900;
         }
         .account2{
             position: relative;
-            font-size: 0.30rem;
+            font-size: 30px;
             color: #999;
-            /*line-height: 90rem;*/
+            /*line-height: 90px;*/
         }
         .clear{
             width: 100%;
-            height: 0.23rem;
+            height: 23px;
         }
         .redEnvOver{
-            width: 5.90rem;
+            width: 590px;
             height: auto;
-            padding: 4.52rem 0.40rem 0.30rem;
-            background: url("https://i3.yongche.name/media/g2/M01/14/10/rBEBP1itPS2Ifl8IAAAXj1BmzBkAAH4zgGqsYoAABen973.png") no-repeat center 4.52rem;
+            padding: 452px 40px 30px;
+            background: url("<{asset:media/g2/M01/14/10/rBEBP1itPS2Ifl8IAAAXj1BmzBkAAH4zgGqsYoAABen973.png}>") no-repeat center 452px;
         }
         .redEnvOverInfo{
             width: 100%;
             height:auto;
             text-align: center;
-            margin-top:1.40rem;
+            margin-top:140px;
         }
         .rongcuo{
             width: 100%;
@@ -170,7 +198,7 @@
             top: 0;
             left: 0;
             z-index: 999;
-            background: url('https://i3.yongche.name/media/g2/M03/12/2D/rBEBP1h8LkuIBh-ZAABfmdZKDD4AAHSgAPvjeoAAF-x009.png') #dc0019 no-repeat;
+            background: url('<{asset:media/g2/M03/12/2D/rBEBP1h8LkuIBh-ZAABfmdZKDD4AAHSgAPvjeoAAF-x009.png}>') #dc0019 no-repeat;
         }
         #whiteLoading{
             width: 100%;
@@ -183,326 +211,204 @@
         }
         .moneyOne{
             width: 100%;
-            height: 0.80rem;
+            height: 80px;
         }
         .moneyOne .accountMoney{
-            font-size: 0.60rem;
+            font-size: 60px;
             font-weight: 900;
         }
         .moneyOne i{
-            font-size: 0.30rem;
+            font-size: 30px;
         }
         .cellphoneBox{
             width: 100%;
-            height: 0.90rem;
+            height: 90px;
             position: relative;
         }
         .cellphoneBox span{
             display: block;
-            width: 2.20rem;
-            height: 0.90rem;
+            width: 220px;
+            height: 90px;
             float: left;
             color: #646464;
-            font-size: 0.26rem;
-            line-height: 0.90rem;
+            font-size: 26px;
+            line-height: 90px;
             position: absolute;
-            left: 1.70rem;
+            left: 170px;
         }
         .coupon{
-            width: 5.90rem;
-            min-height: 2.00rem;
-            background: url("https://i3.yongche.name/media/g2/M02/14/0F/rBEBP1itK7GIWLu0AAASjpiIKs4AAH4pgPFEAEAABKm815.png") no-repeat center;
-            padding: 0.25rem;
+            width: 590px;
+            min-height: 200px;
+            background: url("<{asset:media/g2/M02/14/0F/rBEBP1itK7GIWLu0AAASjpiIKs4AAH4pgPFEAEAABKm815.png}>") no-repeat center;
+            padding: 25px;
             background-size: 100% 100%;
             position: relative;
         }
         .couponLeft{
             position: absolute;
             top: 50%;
-            margin-top: -1.00rem;
-            width: 1.40rem;
-            height:2.00rem;
-            padding-left: 0.60rem;
-            line-height: 2.00rem;
+            margin-top: -100px;
+            width: 140px;
+            height:200px;
+            padding-left: 60px;
+            line-height: 200px;
             float: left;
-            background: url("https://i3.yongche.name/media/g2/M04/14/0F/rBEBP1itM4SIPuu-AAABmkXzfY8AAH4dgP__agAAAJY499.png") no-repeat 0.30rem 1.00rem;
+            background: url("<{asset:media/g2/M04/14/0F/rBEBP1itM4SIPuu-AAABmkXzfY8AAH4dgP__agAAAJY499.png}>") no-repeat 30px 100px;
         }
         .couponLeft span{
-            font-size: 0.60rem;
+            font-size: 60px;
             color: #f05a48;
         }
         .couponLeft i{
-            font-size: 0.26rem;
+            font-size: 26px;
         }
         .couponRight{
             /*position: relative;*/
             text-align: left;
-            margin-left: 2.00rem;
-            min-height: 1.40rem;
-            width:3.30rem;
+            margin-left: 200px;
+            min-height: 140px;
+            width:330px;
             opacity: 0.6;
-            padding:0.30rem;
+            padding:30px;
         }
         .couponName{
-            width:3.20rem;
+            width:320px;
             height:auto;
-            font-size: 0.30rem;
+            font-size: 30px;
             color: #000;
-            margin-bottom: 0.20rem;
+            margin-bottom: 20px;
         }
         .expiryTime{
-            font-size: 0.24rem;
+            font-size: 24px;
             color: #999;
-            line-height: 0.34rem;
+            line-height: 34px;
         }
         .couponInfo{
-            width: 3.30rem;
-            min-height: 0.82rem;
-            padding-bottom: 0.16rem;
+            width: 330px;
+            min-height: 82px;
+            padding-bottom: 16px;
         }
         .downLoadBtn{
             width:100%;
-            height:0.80rem;
+            height:80px;
         }
         .twoline{
-            padding-top: 0.20rem;
+            padding-top: 20px;
         }
         .telLeft,.telRight{
             display: block;
             float: left;
-            height: 0.33rem;
-            line-height: 0.34rem;
+            height: 33px;
+            line-height: 34px;
         }
         .telBox{
             width:100%;
-            height: 0.32rem;
-            margin:0.40rem 0 0.60rem 0.30rem;
+            height: 32px;
+            margin:40px 0 60px 30px;
         }
         .telLeft{
-            width:2.70rem;
-            margin:0 0.20rem 0 0.10rem;
-            font-size: 0.30rem;
+            width:270px;
+            margin:0 20px 0 10px;
+            font-size: 30px;
             color: #333;
         }
         .telRight{
-            width:2.72rem;
-            font-size: 0.36rem;
+            width:272px;
+            font-size: 36px;
             color: #f05a48;
         }
         .pen{
             display: block;
             float: right;
-            width:0.30rem;
-            height:0.30rem;
-            background: url("https://i3.yongche.name/media/g2/M03/14/0E/rBEBJVis_D-Ic44fAAACxwoVzacAAH4NAP__QwAAAL0827.png") no-repeat right top;
+            width:30px;
+            height:30px;
+            background: url("<{asset:media/g2/M03/14/0E/rBEBJVis_D-Ic44fAAACxwoVzacAAH4NAP__QwAAAL0827.png}>") no-repeat right top;
             background-size: 100% 100%;
         }
         .downLoadBottom{
             width:100%;
-            height: 0.90rem;
+            height: 90px;
             background: #f05a48;
             color: #fff;
             text-align: center;
             position:fixed;
             left:0;
             bottom: 0;
-            font-size: 0.36rem;
-            line-height: 0.90rem;
-            background: url("https://i3.yongche.name/media/g2/M01/14/0C/rBEBJVir6wiIIOTcAAAAeVryRIUAAH3TQP__qkAAAFX093.png") no-repeat 5.00rem center #f05a48;
+            font-size: 36px;
+            line-height: 90px;
+            background: url("<{asset:media/g2/M01/14/0C/rBEBJVir6wiIIOTcAAAAeVryRIUAAH3TQP__qkAAAFX093.png}>") no-repeat 500px center #f05a48;
         }
         .listMoneyBox{
-            width: 1.00rem;
-            height:0.45rem;
+            width: 100px;
+            height:45px;
         }
         .listMoneyBox span{
             display: block;
-            width: 0.60rem;
+            width: 60px;
             text-align: right;
-            height:0.45rem;
+            height:45px;
             float: left;
-            line-height:0.48rem;
-            margin-right: 0.02rem;
+            line-height:48px;
+            margin-right: 2px;
         }
         .listMoneyBox i{
             display: block;
             text-align: left;
-            height:0.45rem;
+            height:45px;
             float: left;
-            line-height:0.52rem;
+            line-height:52px;
         }
         .redEnvOver .telBox{
-            margin:0.36rem auto 0;
+            margin:36px auto 0;
         }
         .redEnvOver .telLeft{
-            width: 2.20rem;
+            width: 220px;
             text-align: right;
         }
     </style>
 </head>
 <body>
-<div id="app" class="wrapper">
-	<div class="content" id="content">
-	    <div id="topBox">
-	        <!--抢到红包-->
-	        <div class="redEnvMoney">
-	            <div class="couponBox">
-	            	<div class="coupon">
-		                <div class="couponLeft">
-		                	<span>8</span>
-		                </div>
-		                <div class="couponRight">
-			                <div class="couponInfo" id="couponInfo">
-				                <p class="couponName">3元用车券</p>
-				                <p class="expiryTime">8</p>
-				                <p class="expiryTime">有效期至2018-08-08</p>
-				                <p class="expiryTime">仅限北京使用</p>
-				                <p class="expiryTime">仅限易达车型</p>
-			                </div>
-		                </div>
-	            	</div>
-	            </div>
-	
-	            <div class="telBox" id="telBox">
-	                <span class="telLeft">优惠券已存入您账户</span>
-	                <i class="telRight"><i id="tel"></i><em class="pen"></em></i>
-	            </div>
-	        </div>
-	    </div>
-	    <div class="topbox">
-	    	<div class="redEnvOver">
-	    		<div class="redEnvOverInfo">
-	    			<p class="sponsor2">手慢了，红包已抢完</p>
-	    			<p class="account2">别伤心，易到还有充值返80%，抓紧时间</p>
-	    		</div>
-	    		<div class="telBox">
-	    			<span class="telLeft">您的账户：</span>
-	    			<i class="telRight">16825825825<em class="pen"></em></i>
-	    		</div>
-	    	</div>
-	    </div>
-	    
-	    <div class="downLoadBtn" style="display: none">
-	        <button class="downloadYiDao">立即使用</button>
-	    </div>
-	    <div class="winnersList">
-	        <div id="friendlist" class="list" style="display: block;">
-	            <div class="line">
-	                <h4 class="title">看看朋友们手气如何</h4>
-	            </div>
-	            <div class="clear"></div>
-	            <!--好友获得红包-->
-	            <div class="friendBox" id="friendBox">
-	
-	            </div>
-	        </div>
-	        <div class="rule">
-	            <div class="line">
-	                <h4 class="title ruletitle">活动规则</h4>
-	            </div>
-	            <div class="ruleDetail" id="ruleDetail"> </div>
-	        </div>
-	    </div>
-	    <div class="downLoadBottom" style="display: none">下载易到APP</div>
-	</div>
-	<div class="rongcuo" id='rongcuo' style="display: none;"></div>
-	<div id="whiteLoading" style="display: none;"></div>
+<div class="content" id="content">
+    <div id="topBox">
+        <!--抢到红包-->
+        <div class="redEnvMoney">
+            <div class="couponBox"></div>
+
+            <div class="telBox" id="telBox">
+                <span class="telLeft">优惠券已存入您账户</span>
+                <i class="telRight"><i id="tel"></i><em class="pen"></em></i>
+            </div>
+        </div>
+    </div>
+    <div class="downLoadBtn" style="display: none">
+        <button class="downloadYiDao">立即使用</button>
+    </div>
+    <div class="winnersList">
+        <div id="friendlist" class="list" style="display: block;">
+            <div class="line">
+                <h4 class="title">看看朋友们手气如何</h4>
+            </div>
+            <div class="clear"></div>
+            <!--好友获得红包-->
+            <div class="friendBox" id="friendBox">
+
+            </div>
+        </div>
+        <div class="rule">
+            <div class="line">
+                <h4 class="title ruletitle">活动规则</h4>
+            </div>
+            <div class="ruleDetail" id="ruleDetail">
+
+            </div>
+        </div>
+    </div>
+    <div class="downLoadBottom" style="display: none">下载易到APP</div>
 </div>
+<div class="rongcuo" id='rongcuo' style="display: none;"></div>
+<div id="whiteLoading" style="display: none;"></div>
 <script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
 <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js "></script>
-<script src='https://cdn.bootcss.com/vue/2.5.16/vue.min.js'></script>	
-<script type="text/javascript">
-new Vue({
-  	el: '#app',
-	data:{
-		result_page_url:'http://www.yongche.com/cms/page/redpacket_list2.html', //红包领取结果页的地址
-		//share_api:'https://red-packets.yongche.com/v1/hongbao/share', //获取微信分享配置数据的接口
-		share_api:'//testing.red-packets.yongche.Org/v1/hongbao/share', //获取微信分享配置数据的接口
-		order_id:'106', //订单结束输入的order_id就是订单id，充返结束的order_id是充值之后的"recharge_transaction_id",
-		source:1,
-		zt:0, //解析之后的用户的user_id
-		tel:'',  //输入手机号
-		bg_pic:'https://i3.yongche.name/media/g2/M03/12/2D/rBEBP1h8LkuIBh-ZAABfmdZKDD4AAHSgAPvjeoAAF-x009.png', //整体背景图的地址
-		rule_html:'', //活动规则
-		nickname:'lalalala', //昵称
-		head_portrait:'https://i3.yongche.name/media/g2/M01/13/3B/rBEBP1ild-qIf3kxAAANE-sZ5JwAAHw5AL14MoAAA0r413.png', //头像
-		loading:true, //是否加载中
-		abnormal:false, //是否异常 //红包操作异常，请稍后再试
-		showToast:false,  //吐司提示框的展示与否  false-不展示，true-展示
-	  	toastMsg:'', //吐司提示信息
-	},
-	mounted: function(){
-		this.init();
-	},
-	methods:{
-		init:function(){
-			
-			this.order_id	=	this.GetQueryString('order_id');
-	        this.source     =   this.GetQueryString('source');
-	        this.zt         =   this.GetQueryString('zt');
-	        this.tel        =   this.GetQueryString('tel')
-	        if(this.zt==null||this.source==''||this.source==undefined){
-            	this.zt = 0;
-	        }
-	        
-	        this.order_id = 106; //TODO 测试
-	        
-			this.getShareData();
-	        
-		},
-		
-		getShareData:function(){ //获取分享配置信息
-			var vm = this;
-			$.ajax({
-	            type:"get",
-	            url: this.share_api + "?order_id=" + this.order_id + "&source=" + this.source + "&zt=" + this.zt,
-	            dataType:'jsonp',
-	            success:function(res){
-	                console.log(res);
-	                if(res.code=='000000'){
-	                    var data = res.data;
-	                    var wShare = {};
-	                    wShare.shareImg     = data.share_pic;
-	                    wShare.shareTitle   = data.share_title;
-	                    wShare.shareContent = data.share_desc;
-	                    wShare.shareUrl = 'http://www.yongche.com/cms/page/get_redpacket2.html?order_id='+ vm.order_id + '&source=' + vm.source + '&zt=' + vm.zt;
-	                    
-	                    wx_share(wShare);//设置微信分享的信息
-	                    
-	                    vm.bg_pic = data.h5_pic; //整体背景图
-	                    vm.rules = data.h5_rule; //活动规则文案
-	                    vm.head_portrait = data.head_image; //头像地址
-	                    vm.nickname = data.nickname; //昵称
-	                    
-	                    vm.loading = false;
-	                    
-	                } else{
-	                    vm.loading = false;
-	                    //vm.abnormal = true;  //红包操作异常，请稍后再试  //TODO
-	                }
-	            }
-	        });
-		},
-		
-		reload:function(){
-			window.location.reload();
-		},
-		showToastFn:function(msg){  //toast提示
-			var vm = this;
-			vm.showToast = true;
-     		vm.toastMsg = msg;
-     		setTimeout(function(){
-     			vm.showToast = false;
-     		},2000)
-		},
-        GetQueryString:function (name){//解析url参数
-            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-            var r = window.location.search.substr(1).match(reg);
-            if(r!=null)return  unescape(r[2]); return null;
-        }
-  	}
-})	
-</script>
-
 <script>
     var wShare = {};
     $(function() {
@@ -529,7 +435,7 @@ new Vue({
         var content = $("#content");
         var downLoadBottom = $(".downLoadBottom");
         var downLoadBtn = $(".downLoadBtn");
-        //whiteLoading.show();
+        whiteLoading.show();
         $("#tel").html(tel);
         //容错页面
         rongcuo.click(function() {
@@ -696,7 +602,7 @@ new Vue({
                         userFriend[i].best = 'none';
                     }
                     if(userFriend[i].head_image==''){
-                        userFriend[i].head_image = 'https://i3.yongche.name/media/g2/M01/13/3B/rBEBP1ild-qIf3kxAAANE-sZ5JwAAHw5AL14MoAAA0r413.png';
+                        userFriend[i].head_image = '<{asset:media/g2/M01/13/3B/rBEBP1ild-qIf3kxAAANE-sZ5JwAAHw5AL14MoAAA0r413.png}>';
                     }
                     friendHTML+='<div class="friend"><img class = "userHeadSmall" src='+userFriend[i].head_image+'><div class="firendSay"><h5>'+userFriend[i].user_name+'</h5><p>'+userFriend[i].h5_greetings_msg+'</p></div><div class="friendMoney"><p class="listMoneyBox"><span class="money">'+userFriend[i].coupon_amount+'</span><i>元</i></p><p class="best" style="display:'+userFriend[i].best+'">手气最佳</p></div></div>'
                 }

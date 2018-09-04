@@ -16,7 +16,7 @@
         h1,h2,h3,h4,h5,h6{ font-weight: normal; }
         a,i{ font-style: normal; }
         html,body{ width: 100%; height: 100%; }
-        .wrapper{ width: 100%; height: 100%; background-size: 100%; }
+        .wrapper{ width: 100%; height: 100%; background-size: 100%; background-repeat: no-repeat}
         .content{ padding:0 0.8rem 0.8rem 0.8rem; }
         .userInfo{ width: 5.9rem; height: 0.9rem; padding: 4.22rem 0 0.36rem; }
         .userHead{ width: 0.9rem; height: 0.9rem; overflow: hidden; border-radius: 100%; float: left; margin-right: 0.2rem; }
@@ -24,6 +24,7 @@
             height: 0.7rem;
             float: left;
             background: url('https://i3.yongche.name/media/g2/M04/14/0B/rBEBJVir9J6IJdZ6AAAFDJ3u9QcAAH2xwP_-qwAAAVU469.png') no-repeat top center;
+            background-size: 100% 100%;
             width: 4.4rem;
             padding:0.1rem 0.1rem 0.1rem 0.3rem;
             line-height: 0.36rem;
@@ -83,7 +84,7 @@
             text-align: center;
             top: -0.2rem;
             left: 50%;
-            height: 0.3rem;
+            /*height: 0.3rem;*/
             background: #fff;
         }
         .ruletitle{
@@ -159,13 +160,14 @@ new Vue({
   	el: '#app',
 	data:{
 		result_page_url:'http://www.yongche.com/cms/page/redpacket_list2.html', //红包领取结果页的地址
-		//share_api:'https://red-packets.yongche.com/v1/hongbao/share', //获取微信分享配置数据的接口
-		share_api:'//testing.red-packets.yongche.Org/v1/hongbao/share', //获取微信分享配置数据的接口
+		//share_api:'https://red-packets.yongche.com/V2/hongbao', //获取微信分享配置数据的接口
+		share_api:'//testing.red-packets.yongche.Org/V2/hongbao', //获取微信分享配置数据的接口
 		order_id:'106', //订单结束输入的order_id就是订单id，充返结束的order_id是充值之后的"recharge_transaction_id",
 		source:1,
 		zt:0, //解析之后的用户的user_id
 		tel:'',  //输入手机号
-		bg_pic:'https://i3.yongche.name/media/g2/M03/12/2D/rBEBP1h8LkuIBh-ZAABfmdZKDD4AAHSgAPvjeoAAF-x009.png', //整体背景图的地址
+		city:'bj',  //定位城市
+		bg_pic:'./img/bg1.jpg', //整体背景图的地址
 		rule_html:'', //活动规则
 		nickname:'lalalala', //昵称
 		head_portrait:'https://i3.yongche.name/media/g2/M01/13/3B/rBEBP1ild-qIf3kxAAANE-sZ5JwAAHw5AL14MoAAA0r413.png', //头像
@@ -179,8 +181,6 @@ new Vue({
 	},
 	methods:{
 		init:function(){
-			this.getCurrentPosition();
-			
 			this.order_id	=	this.GetQueryString('order_id');
 	        this.source     =   this.GetQueryString('source');
 	        this.zt         =   this.GetQueryString('zt');
@@ -190,61 +190,49 @@ new Vue({
 	        if(this.source==null||this.source==''||this.source==undefined||this.source=='(null)'){
 	            this.source=1;
 	        }
-	        this.order_id = 106; //TODO 测试
+	       // {"order_id":"112","source":"2","zt":"26054243"}
+	        this.order_id = 112; //TODO 测试
+	        this.source = 2; //TODO 测试
+	        	this.zt = 26054243; //TODO 测试
+	        	
 	        if(localStorage.tel&&localStorage.order_id){//已经输入过手机号，直接跳转结果页
 	            var tel = localStorage.tel;
 	            window.location.href = encodeURI( this.result_page_url + "?tel=" + tel + "&order_id=" + this.order_id + "&source=" + this.source + "&zt=" + this.zt);
 	        }else{
 				this.getShareData();
 	        }
+	        var vm = this;
+	        /*this.getCurrentPosition(function(){
+				if(localStorage.tel&&localStorage.order_id){//已经输入过手机号，直接跳转结果页
+		            var tel = localStorage.tel;
+		            window.location.href = encodeURI( vm.result_page_url + "?tel=" + tel + "&order_id=" + vm.order_id + "&source=" + vm.source + "&zt=" + vm.zt + "&city=" + vm.city );
+		        }else{
+					vm.getShareData();
+		        }
+			});*/
 		},
-		getCurrentPosition:function(){  //获取当前位置
+		getCurrentPosition:function(cb){  //获取当前位置
 			var vm = this;
 			var geolocation = new BMap.Geolocation();
-	    	geolocation.getCurrentPosition(function(r){
-	    		if(this.getStatus() == BMAP_STATUS_SUCCESS){
-	    			vm.positionToCity(r.point.lat,r.point.lng);
-	    		}else {
-	    			vm.showToastFn('failed'+this.getStatus());
-	    		}        
-	    	},{enableHighAccuracy: true})
+	    		geolocation.getCurrentPosition(function(r){
+	    			if(this.getStatus() == BMAP_STATUS_SUCCESS){
+	    				vm.positionToCity(r.point.lat,r.point.lng,cb);
+	    			}else {
+    					vm.showToastFn('failed'+this.getStatus());
+	    			}        
+	    		},{enableHighAccuracy: true})
 		},
-		positionToCity:function(lat,lng){//经纬度转化成省市县格式
+		positionToCity:function(lat,lng,cb){//经纬度转化成省市县格式
 			var vm = this;
-			$.ajax({
-	  			type:"GET",
-	  			url:vm.urlDomain+"/Common/GetCityByCoordinate",
-	  			data:{
-	  				'register_code':'',
-	  				'lat':lat,
-	  				'lng':lng
-	  			},
-                success:function(data) {
-                	if(data.code==200){
-                		if(data.msg.ret_code==200){
-                			var res = data.msg.result;
-	                		//vm.areaStrPos = res.province+','+res.city+','+res.district; //定位信息用一个变量暂存起来
-	                		conole.log(res)
-                		}else{
-                			console.log(data.msg.ret_code)
-                		}
-                	}else if(data.code==500){
-                		vm.showToastFn('服务器错误');
-                	}else if(data.code==499){//参数异常
-                		vm.showToastFn('参数异常');
-                	}
-                },
-                error:function(err){
-                    console.log(err);
-                    //vm.showToastFn('GetCityByCoordinate');
-                }
-	  		});
+			$.ajax({         			url:'https://www.yongche.com/greencar/ajax/get_city.php',        			type:'POST',         			dataType:"json",         			data:{lat:lat,lng:lng},         			success:function(data){             			console.log(data);             			vm.city=data.result.short;  
+					cb();
+				}     			}) 
 		},
 		getShareData:function(){ //获取分享配置信息
 			var vm = this;
 			$.ajax({
 	            type:"get",
-	            url: this.share_api + "?order_id=" + this.order_id + "&source=" + this.source + "&zt=" + this.zt,
+	            url: this.share_api + "/share?order_id=" + this.order_id + "&source=" + this.source + "&zt=" + this.zt,
 	            dataType:'jsonp',
 	            success:function(res){
 	                console.log(res);
