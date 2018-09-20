@@ -17,18 +17,10 @@
         *{margin: 0; padding: 0; font-family: "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif; -webkit-tap-highlight-color:transparent; }
         h1,h2,h3,h4,h5,h6{ font-weight: normal; }
         a,i{ font-style: normal; }
-        html,body{ width: 100%; height: 100%; }
+        html,body{ width: 100%; height: 100%;  background-color: #FFFFFF;}
         .wrapper{background-size: 100%; background-repeat: no-repeat;}
-        /*.content{ padding:0 0.8rem 0.8rem 0.8rem; }*/
-        .redEnvMoney{
-            /*width: 5.90rem;*/
-            padding-top:4.30rem;
-            /*padding-left:0.15rem;*/
-        }
-        #topBox{
-            /*width: 6.70rem;*/
-            min-height: 6.04rem;
-        }
+        .redEnvMoney{  padding-top:4.30rem;}
+        #topBox{  min-height: 6.04rem; }
         .downloadYiDao{
             display:block;
             height: 0.80rem;
@@ -45,7 +37,6 @@
             margin:0 auto;
         }
         .winnersList{
-            /*width: 5.90rem;*/
             height: auto;
             margin-top: 0.40rem;
             padding:0.50rem 0.80rem 0.9rem;
@@ -55,7 +46,7 @@
         }
         .line{
             width: 100%;
-            height: 0.01rem;
+            height: 1px;
             background: #e1e1e1;
             position: relative;
         }
@@ -135,7 +126,7 @@
             word-break: break-all;
         }
         .sponsor2{
-            font-size: 0.54rem;
+            font-size: 0.52rem;
             color: #333;
             font-weight: 900;
             margin:0.40rem 0 0.30rem;
@@ -148,17 +139,16 @@
             position: relative;
             font-size: 0.30rem;
             color: #999;
-            /*line-height: 90rem;*/
         }
         .clear{
             width: 100%;
             height: 0.23rem;
         }
         .redEnvOver{
-            /*width: 5.90rem;*/
             height: auto;
             padding: 4.52rem 0.40rem 0.30rem;
             background: url("https://i3.yongche.name/media/g2/M01/14/10/rBEBP1itPS2Ifl8IAAAXj1BmzBkAAH4zgGqsYoAABen973.png") no-repeat center 4.52rem;
+            background-size: 2.32rem 0.99rem;
         }
         .redEnvOverInfo{
             width: 100%;
@@ -219,7 +209,6 @@
             min-height: 2.00rem;
             background: url("https://i3.yongche.name/media/g2/M02/14/0F/rBEBP1itK7GIWLu0AAASjpiIKs4AAH4pgPFEAEAABKm815.png") no-repeat center;
             background-size: 100% 100%;
-            /*padding: 0.25rem;*/
             position: relative;
         }
         .couponLeft{
@@ -238,11 +227,8 @@
             font-size: 0.60rem;
             color: #f05a48;
         }
-        .couponLeft i{
-            font-size: 0.26rem;
-        }
+        .couponLeft i{ font-size: 0.26rem;}
         .couponRight{
-            /*position: relative;*/
             text-align: left;
             margin-left: 2.25rem;
             min-height: 1.40rem;
@@ -271,11 +257,8 @@
             width:100%;
             height:0.80rem;
         }
-        .twoline{
-            padding-top: 0.20rem;
-        }
+        .twoline{ padding-top: 0.20rem;}
         .telLeft,.telRight{
-            /*display: block;*/
             float: left;
             height: 0.33rem;
             line-height: 0.34rem;
@@ -322,7 +305,6 @@
             height:0.45rem;
         }
         .listMoneyBox span{
-            /*display: block;*/
             width: 0.60rem;
             text-align: right;
             height:0.45rem;
@@ -331,23 +313,17 @@
             margin-right: 0.02rem;
         }
         .listMoneyBox i{
-            /*display: block;*/
             text-align: left;
             height:0.45rem;
             float: right;
             line-height:0.52rem;
         }
-        .redEnvOver .telBox{
-            margin:0.36rem auto 0;
-        }
-        .redEnvOver .telLeft{
-            width: 2.0rem;
-            text-align: right;
-        }
+        .redEnvOver .telBox{ margin:0.36rem auto 0;}
+        .redEnvOver .telLeft{ width: 2.0rem;  text-align: right;}
         .rule{padding-top: 0.13rem;}
         
-        .clearfix:after {content: "."; display: block; height:0; clear:both; visibility: hidden;}
-        .clearfix { *zoom:1; }
+.clearfix:after {content: "."; display: block; height:0; clear:both; visibility: hidden;}
+.clearfix { *zoom:1; }
 .toastmsg{ position: fixed; bottom: 35%; left: 10%; width: 80%; height: 40px; line-height: 40px; background: rgba(0,0,0,0.5); color: #fff; z-index: 30; text-align: center; border-radius: 20px;font-size: 18px;}
 .slide-up-fade-enter-active { transition: all .3s ease; }
 .slide-up-fade-leave-active { transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0); }
@@ -360,7 +336,7 @@
 	<div class="content" id="content">
 	    <div id="topBox">
 	        <!--抢到红包-->
-	        <div class="redEnvMoney" v-if="result_status==1">
+	        <div class="redEnvMoney" v-if="result_status==1 && couponlist.length>0">
 	            <div class="couponBox">
 		            	<div class="coupon" v-for="coupon in couponlist">
 			                <div class="couponLeft">
@@ -390,7 +366,7 @@
 		    		</div>
 		    		<div class="telBox clearfix">
 		    			<span class="telLeft">您的账户：</span>
-		    			<i class="telRight">{{tel}}<em class="pen"></em></i>
+		    			<i class="telRight" @click="changeTel">{{tel}}<em class="pen"></em></i>
 		    		</div>
 		    	</div>
 	    </div>
@@ -443,113 +419,31 @@
 new Vue({
   	el: '#app',
 	data:{
-		get_redpacket2:'http://www.yongche.com/cms/page/get_redpacket2.html', //红包领取填写手机号页面的地址
-		//share_api:'https://red-packets.yongche.com/V2/hongbao', //获取微信分享配置数据的接口
-		share_api:'//testing.red-packets.yongche.Org/V2/hongbao', //获取微信分享配置数据的接口
-		order_id:'106', //订单结束输入的order_id就是订单id，充返结束的order_id是充值之后的"recharge_transaction_id",
-		source:1,
+		get_redpacket2:'https://www.yongche.com/cms/page/getRedPocket.html', //红包领取填写手机号页面的地址
+		//get_redpacket2:'https://www.yongche.com/cms/page/2018/09/05142312.html',
+		
+		share_api:'https://red-packets.yongche.com/V2/hongbao', //获取微信分享配置数据的接口
+		//share_api:'//testing-red-packets.yongche.Org/V2/hongbao', //获取微信分享配置数据的接口
+		
+		order_id:'', //订单结束输入的order_id就是订单id，充返结束的order_id是充值之后的"recharge_transaction_id",
+		source:1,  
 		zt:0, //解析之后的用户的user_id
-		tel:'16825825825',  //输入手机号
-		bg_pic:'./img/bg1.jpg', //整体背景图的地址
-		rule_html:'<p>1、请您根据自己的消费情况进行购买，易到用车对购买次数不设任何限制；</p><p>2、本次活动仅限个人用户参与，企业用户不在此活动范围；</p><p>3、更多未尽事宜请使用注册手机号拨打客服电话：400-050-0090 进行咨询。</p>', //活动规则
-		result_status:1, //0-初始，1-成功， 2-已抢完，3-已过期，4-老用户，5-已参加过，6-攒人品
-		result_subtitle:'别伤心，易到还有充值返80%，抓紧时间',
+		tel:'',  //输入手机号
+		bg_pic:'', //整体背景图的地址
+		rule_html:'', //活动规则
+		result_status:0, //0-初始，1-成功， 2-已抢完，3-已过期，4-老用户，5-已参加过，6-攒人品
+		result_subtitle:'',  //安抚文案
 		act_id:'',
 		package_id:'',
-		couponlist:[{
-			"coupon_name": "2018年08月中信专属用车券",
-			"desc": "1. 有效期至2018年08月31日 ",
-			"limit_field": "",
-			"car_type": "",
-			"city_list": "",
-			"limit_amount": "0",
-			"coupon_desc": "<dfn>5<\/dfn>元",
-			"business_type": "zhuanche",
-			"coupon_type": 2,
-			"mode": 4,
-			"facevalue": 5,
-			"coupon_amount": 5,
-			"flag": 48,
-			"coupon_id": 7094,
-			"start_time": 1533772803,
-			"end_time": 1535731199,
-			"expiry_time": 1535731199,
-			"receive_time": 1535891908,
-			"app_desc": ["有效期至2018年08月31日"],
-			"web_desc": {
-				"适用用户": "通用",
-				"适用服务": "通用",
-				"适用车型": "通用",
-				"适用城市": "通用",
-				"适用渠道": "通用",
-				"有效期": "有效期至2018年08月31日"
-			}
-		}, {
-			"coupon_id": 7324,
-			"coupon_type": 2,
-			"coupon_name": "2018年08月中信专属用车券",
-			"start_time": 1535673604,
-			"end_time": 1535731199,
-			"expiry_time": 1535731199,
-			"coupon_amount": 10,
-			"mode": 4,
-			"business_type": "zhuanche",
-			"facevalue": 10,
-			"limit_field": "",
-			"limit_amount": "0",
-			"receive_time": 1535891908,
-			"coupon_desc": "<dfn>10<\/dfn>元",
-			"flag": 48,
-			"web_desc": {
-				"适用用户": "通用",
-				"适用服务": "通用",
-				"适用车型": "通用",
-				"适用城市": "通用",
-				"适用渠道": "通用",
-				"有效期": "有效期至2018年08月31日"
-			},
-			"desc": "1. 有效期至2018年08月31日 ",
-			"app_desc": ["有效期至2018年08月31日"],
-			"car_type": "",
-			"city_list": ""
-		}],
-		friendlist:[
-			{
-				head_image:'https://i3.yongche.name/media/g2/M01/13/3B/rBEBP1ild-qIf3kxAAANE-sZ5JwAAHw5AL14MoAAA0r413.png',
-				user_name:'好友昵称aaa',
-				h5_greetings_msg:'系统自动生成回复语',
-				coupon_amount:'23',
-				is_max:false
-			},
-			{
-				head_image:'https://i3.yongche.name/media/g2/M01/13/3B/rBEBP1ild-qIf3kxAAANE-sZ5JwAAHw5AL14MoAAA0r413.png',
-				user_name:'好友昵称bbb',
-				h5_greetings_msg:'系统自动生成回复语',
-				coupon_amount:'43',
-				is_max:1
-			},
-			{
-				head_image:'https://i3.yongche.name/media/g2/M01/13/3B/rBEBP1ild-qIf3kxAAANE-sZ5JwAAHw5AL14MoAAA0r413.png',
-				user_name:'好友昵称ccc',
-				h5_greetings_msg:'系统自动生成回复语',
-				coupon_amount:'12',
-				is_max:false
-			},{
-				head_image:'https://i3.yongche.name/media/g2/M01/13/3B/rBEBP1ild-qIf3kxAAANE-sZ5JwAAHw5AL14MoAAA0r413.png',
-				user_name:'好友昵称ddd',
-				h5_greetings_msg:'系统自动生成回复语',
-				coupon_amount:'15',
-				is_max:false
-			}
-		],
-		
+		couponlist:[],  //所中优惠券列表
+		friendlist:[],  //好友列表
 		loading:true, //是否加载中
 		abnormal:false, //是否异常 //红包操作异常，请稍后再试
 		showToast:false,  //吐司提示框的展示与否  false-不展示，true-展示
-	  	toastMsg:'', //吐司提示信息
+	  	toastMsg:'' //吐司提示信息
 	},
 	computed:{
-		result_title:function(){
+		result_title:function(){  //结果提示文案
 			var text = '';
 			if(this.result_status==2){
 				text = '手慢了，红包已抢完';
@@ -570,7 +464,6 @@ new Vue({
 	},
 	methods:{
 		init:function(){
-			
 			this.order_id	=	this.GetQueryString('order_id');
 	        this.source     =   this.GetQueryString('source');
 	        this.zt         =   this.GetQueryString('zt');
@@ -579,23 +472,19 @@ new Vue({
 	        if(this.zt==null||this.source==''||this.source==undefined){
             		this.zt = 0;
 	        }
+	        //{"act_id":"236","city":"bj","package_id":"67","order_id":"112","tel":"16825825825","source":"2","zt":"r2sq35fifkzcwgww"}
 	        
-	        this.tel = '16825825825';
-	        this.order_id = 112; //TODO 测试
-	        this.source = 2; //TODO 测试
-	        	this.zt = 26054243; //TODO 测试
-	        	this.city = 'bj';
-			//this.getShareData();
-	        //this.getFriendList();
+			this.getShareData();
+	        this.getFriendList();
 		},
 		getShareData:function(){ //获取分享配置信息
 			var vm = this;
 			$.ajax({
 	            type:"get",
-	            url: this.share_api + "/share?order_id=" + this.order_id + "&source=" + this.source + "&zt=" + this.zt + "&city=" + this.city,
+	            url: this.share_api + "/share?order_id=" + this.order_id + "&source=" + this.source + "&zt=" + this.zt ,
 	            dataType:'jsonp',
 	            success:function(res){
-	                console.log(res);
+	                //console.log(res);
 	                if(res.code=='000000'){
 	                    var data = res.data;
 	                    var wShare = {};
@@ -604,17 +493,15 @@ new Vue({
 	                    wShare.shareContent = data.share_desc;
 	                    wShare.shareUrl = vm.get_redpacket2 + '?order_id='+ vm.order_id + '&source=' + vm.source + '&zt=' + vm.zt;
 	                    
-	                    wx_share(wShare);//设置微信分享的信息
+	                    wxShareFn(wShare);//设置微信分享的信息
 	                    
 	                    vm.bg_pic = data.h5_pic; //整体背景图
-	                    vm.rules = data.h5_rule; //活动规则文案
-	                    vm.result_subtitle = data.h5_appease_msg;  //安抚文案  ?
+	                    vm.rule_html = data.h5_rule; //活动规则文案
+	                    vm.result_subtitle = data.h5_appease_msg;  //安抚文案  
 	                    vm.act_id = data.act_id;  //活动ID
                 			vm.package_id = data.package_id;  //
                 			
                 			vm.getResultData(vm.act_id,vm.package_id);
-                			
-	                    //vm.loading = false;
 	                    
 	                } else{
 	                    vm.loading = false;
@@ -635,7 +522,9 @@ new Vue({
 	                	var code = data.code;
 		    			if(code=='000000'){//可领取
 		    				vm.result_status = 1;
-		    				vm.couponlist = data.data.counpon;
+		    				if(data.data.coupon){
+		    					vm.couponlist = data.data.coupon;
+		    				}
 		    				if(vm.couponlist.length>0){
 		    					vm.couponlist.forEach(function(item,index){
 			                		if(item.coupon_amount<100){
@@ -651,8 +540,9 @@ new Vue({
 			                        item.web_desc["适用城市"]='';
 			                    }
 			                })
-		    				}else{
-		    					vm.abnormal = true;
+		    				}
+		    				else{
+		    					vm.result_status = 6;  //展示安抚文案
 		    				}
 		            } else if(code=='100114'){//红包已抢光
 		    				vm.result_status = 2;
@@ -662,17 +552,16 @@ new Vue({
 		    				vm.result_status = 4;
 		            } else if(code=='100120'){//已经参加过活动了
 		    				vm.result_status = 5;
-		            } else if(code=='100117'||code=='100202'){//不满足属性
-		    				vm.result_status = 6;
+		            } else if(code=='100117'||code=='100202' || code=='100122' || code=='100121'){//不满足属性   100121是城市错误
+		    				vm.result_status = 6;  //赞赞人气
 		            } else{
 		                vm.abnormal = true;
 		            }
 		            
             			vm.loading = false;
-            
                 },
                 error:function(error){
-                    
+                    console.log(error);
                 }
             });
 		},
@@ -754,247 +643,7 @@ new Vue({
   	}
 })	
 </script>
-<!--
-<script>
-    var wShare = {};
-    $(function() {
-        //获取url中的参数
-        function GetQueryString(name){
-            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-            var r = window.location.search.substr(1).match(reg);
-            if(r!=null)return  unescape(r[2]); return null;
-        }
-        var urlInfo 	=	 window.location.href;//url
-        var order_id    =   GetQueryString('order_id');
-        var tel         =   GetQueryString('tel');
-        var source      =   GetQueryString('source');
-        var zt          =   GetQueryString('zt');
-        if(zt==null||source==''||source==undefined){
-            zt = 0
-        }
-        console.log(zt)
-        var act_id = '';
-        var package_id = '';
-        var h5_appease_msg = '';
-        var rongcuo = $('#rongcuo');
-        var whiteLoading = $("#whiteLoading");
-        var content = $("#content");
-        var downLoadBottom = $(".downLoadBottom");
-        var downLoadBtn = $(".downLoadBtn");
-        //whiteLoading.show();
-        $("#tel").html(tel);
-        //容错页面
-        rongcuo.click(function() {
-            window.location.reload();
-        });
-        //获取分享数据
-        var one = $.ajax({
-            type:"get",
-            url:"//testing.red-packets.yongche.Org/v1/hongbao/share?order_id="+order_id+"&source="+source+"&zt="+zt,
-//            url:"https://red-packets.yongche.com/v1/hongbao/share?order_id="+order_id+"&source="+source+"&zt="+zt,
-            dataType:'jsonp'
-        });
-        one.then(function(data) {
-            getShareData(data);
-        },function(err){alert(err)});
-        function getShareData(data){
-            console.log(data);
-            if(data.code=='000000'){
-                var resData = data.data;
-                act_id = resData.act_id;
-                package_id = resData.package_id;
-                h5_appease_msg = resData.h5_appease_msg;
-                $("body").css('background','url('+resData.h5_pic+') no-repeat top center');
-                $("#ruleDetail").html(resData.h5_rule);
-                wShare.shareImg     = resData.share_pic;
-                wShare.shareTitle   = resData.share_title;
-                wShare.shareContent = resData.share_desc;
-//                wShare.shareUrl = 'http://www.yongche.com/cms/page/getRedPocket.html?order_id='+order_id+'&source='+source+'&zt='+zt;
-                wShare.shareUrl = 'http://www.yongche.com/cms/page/get_redpacket2.html?order_id='+order_id+'&source='+source+'&zt='+zt;
-                setTimeout(function(){
-                    wxShareFn(wShare)
-                },0);
 
-                two = $.ajax({
-                    type:"get",
-//                    url:"https://red-packets.yongche.com/v1/hongbao/apply?order_id="+order_id+"&act_id="+act_id+"&package_id="+package_id+"&tel="+tel+"&source="+source+"&zt="+zt,
-                    url:"//testing.red-packets.yongche.Org/v1/hongbao/apply?order_id="+order_id+"&act_id="+act_id+"&package_id="+package_id+"&tel="+tel+"&source="+source+"&zt="+zt,
-                    dataType:'jsonp'
-                });
-                two.then(function(data) {
-                    getApplyData(data);
-                },function(err){alert(err)});
-            }
-
-        }
-
-        function getApplyData(data){
-            console.log(data);
-            var code = data.code;
-            var topBox = $("#topBox");
-            var myMoneyHTML = '';
-            if(code=='000000'){//可领取
-                var coupon_info = data.data.coupon;
-                if(coupon_info.length>0){
-                    for(var i = 0; i < coupon_info.length; i++){
-                        var coupon_amount = coupon_info[i].coupon_amount;
-                        if(coupon_amount<100){
-                            coupon_amount = coupon_amount+'.0';
-                        }
-                        if(!(coupon_info[i].web_desc["优惠金额"])){
-                            coupon_info[i].web_desc["优惠金额"]='';
-                        }
-                        if(coupon_info[i].web_desc["适用车型"]=="通用"){
-                            coupon_info[i].web_desc["适用车型"]='';
-                        }
-                        if(coupon_info[i].web_desc["适用城市"]=="通用"){
-                            coupon_info[i].web_desc["适用城市"]='';
-                        }
-                        myMoneyHTML +=
-                                '<div class="coupon">' +
-                                '<div class="couponLeft">' +
-                                '<span>'+coupon_amount+'</span>' +
-                                '</div>' +
-                                '<div class="couponRight">' +
-                                '<div class="couponInfo" id="couponInfo">' +
-                                '<p class="couponName">'+coupon_info[i].coupon_name+'</p>' +
-                                '<p class="expiryTime">'+coupon_info[i].web_desc["优惠金额"]+'</p>' +
-                                '<p class="expiryTime">'+coupon_info[i].web_desc["有效期"]+'</p>' +
-                                '<p class="expiryTime">'+coupon_info[i].web_desc["适用城市"]+'</p>' +
-                                '<p class="expiryTime">'+coupon_info[i].web_desc["适用车型"]+'</p>' +
-                                '</div></div></div>';
-
-                    }
-
-                    $(".couponBox").html(myMoneyHTML);
-                    var couponInfoHeight = document.getElementById('couponInfo').offsetHeight;
-                    var couponInfo = $('#couponInfo');
-                    if(couponInfoHeight<=114){
-                        couponInfo.addClass('twoline')
-                    }
-                    downLoadBtn.show();
-                    whiteLoading.hide();
-                    content.show();
-                } else{
-                    rongcuo.show();
-                    whiteLoading.hide();
-                }
-            } else if(code=='100114'){//红包已抢光
-                var overHTML = '<div class="redEnvOver"><div class="redEnvOverInfo"><p class="sponsor2">手慢了，红包已抢完</p><p class="account2">'+h5_appease_msg+'</p></div><div class="telBox"><span class="telLeft">您的账户：</span><i class="telRight">'+tel+'<em class="pen"></em></i></div></div>';
-                topBox.html(overHTML);
-                downLoadBottom.show();
-                whiteLoading.hide();
-                content.show();
-            } else if(code=='100103'||code=='10018'||code=='100111'){//活动过期
-                var overdueHTML = '<div class="redEnvOver"><div class="redEnvOverInfo"><p class="sponsor2">红包已过期</p><p class="account2">'+h5_appease_msg+'</p></div><div class="telBox"><span class="telLeft">您的账户：</span><i class="telRight">'+tel+'<em class="pen"></em></i></div></div>';
-                topBox.html(overdueHTML);
-                $("#friendlist").css('display','none');
-                downLoadBottom.show();
-                whiteLoading.hide();
-                content.show();
-            } else if(code=='100112'){//仅限新用户领取
-                var newUserHTML = '<div class="redEnvOver"><div class="redEnvOverInfo"><p class="sponsor2">您已经是易到老用户了</p><p class="account2">'+h5_appease_msg+'</p></div><div class="telBox"><span class="telLeft">您的账户：</span><i class="telRight">'+tel+'<em class="pen"></em></i></div></div>';
-                topBox.html(newUserHTML);
-                whiteLoading.hide();
-                downLoadBottom.show();
-                content.show();
-            } else if(code=='100120'){//已经参加过活动了
-                var newUserHTML = '<div class="redEnvOver"><div class="redEnvOverInfo"><p class="sponsor2">您已参加过本次活动了</p><p class="account2">'+h5_appease_msg+'</p></div><div class="telBox"><span class="telLeft">您的账户：</span><i class="telRight">'+tel+'<em class="pen"></em></i></div></div>';
-                topBox.html(newUserHTML);
-                whiteLoading.hide();
-                downLoadBottom.show();
-                content.show();
-            } else if(code=='100117'||code=='100202'){//不满足属性
-                var otherHTML = '<div class="redEnvOver"><div class="redEnvOverInfo"><p class="sponsor2">攒攒人品，再接再厉</p><p class="account2">'+h5_appease_msg+'</p></div><div class="telBox"><span class="telLeft">您的账户：</span><i class="telRight">'+tel+'<em class="pen"></em></i></div></div>';
-                topBox.html(otherHTML);
-                downLoadBottom.show();
-                whiteLoading.hide();
-                content.show();
-            } else{
-                whiteLoading.hide();
-                rongcuo.show();
-            }
-            //点击修改手机号按钮
-            $(".pen").click(function() {
-                localStorage.clear();
-//                window.location.href='http://www.yongche.com/cms/page/getRedPocket.html?order_id='+order_id+"&source="+source+"&zt="+zt;
-                window.location.href='http://www.yongche.com/cms/page/get_redpacket2.html?order_id='+order_id+"&source="+source+"&zt="+zt;
-            });
-            //获取好友列表
-            var three = $.ajax({
-                type:"get",
-                url:"//testing.red-packets.yongche.Org/v1/hongbao/UserList?order_id="+order_id+"&source="+source+"&tel="+tel,
-                dataType: 'jsonp'
-            });
-            three.then(function(data){
-                getFriendList(data);
-            },function(err) {alert(err)})
-        }
-
-        function getFriendList(data){
-            console.log(data);
-            if(data.code=='000000'){
-                var userFriend = data.data.list;
-                if(userFriend.length==0){
-                    $("#friendlist").css('display','none');
-                }
-                var friendHTML = '';
-                for(var i in userFriend){
-                    if(userFriend[i].is_max==1){
-                        userFriend[i].best = 'block';
-                    } else{
-                        userFriend[i].best = 'none';
-                    }
-                    if(userFriend[i].head_image==''){
-                        userFriend[i].head_image = 'https://i3.yongche.name/media/g2/M01/13/3B/rBEBP1ild-qIf3kxAAANE-sZ5JwAAHw5AL14MoAAA0r413.png';
-                    }
-                    friendHTML+='<div class="friend"><img class = "userHeadSmall" src='+userFriend[i].head_image+'><div class="firendSay"><h5>'+userFriend[i].user_name+'</h5><p>'+userFriend[i].h5_greetings_msg+'</p></div><div class="friendMoney"><p class="listMoneyBox"><span class="money">'+userFriend[i].coupon_amount+'</span><i>元</i></p><p class="best" style="display:'+userFriend[i].best+'">手气最佳</p></div></div>'
-                }
-                $('#friendBox').html(friendHTML)
-            } else if(data.code!='000000'){
-                $("#friendlist").css('display','none');
-            }
-        }
-
-        //下载跳转
-        function downLoad() {
-            ga('send', 'event', '下载app', 'click', '红包页点击下载');
-            var browser = {
-                versions: function () {
-                    var u = navigator.userAgent, app = navigator.appVersion;
-                    return { //移动终端浏览器版本信息
-                        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
-                        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或uc浏览器
-                        iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
-                        iPad: u.indexOf('iPad') > -1 //是否iPad
-                    };
-                }()
-            };
-            var url='//www.yongche.com/download/yongche.php?source=3g';
-            function is_weixin(){
-                var ua = navigator.userAgent.toLowerCase();
-                if(ua.match(/MicroMessenger/i)=="micromessenger") {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-            if(is_weixin()) {
-                url = "//www.yongche.com/download/yongche.php?source=3g";
-            }
-            else if (browser.versions.iPhone || browser.versions.iPad || browser.versions.ios) {
-                url = "http://itunes.apple.com/cn/app/id427555239?mt=8";
-            }
-            window.location.href=url;
-        }
-        $(".downloadYiDao").click(function() {
-            downLoad();
-        });
-        downLoadBottom.click(function() {
-            downLoad();
-        });
-    });
-</script>-->
 <script>
     (function ($) {
         $.fn.wxShare = function (oParam) {

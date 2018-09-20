@@ -412,6 +412,12 @@
 <script>
     var wShare = {};
     $(function() {
+    		var hongbao_api = "//testing.red-packets.yongche.Org/V2/hongbao";
+    		//var hongbao_api = "https://red-packets.yongche.com/V2/hongbao";
+    		
+    		var getredpacet = "http://www.yongche.com/cms/page/get_redpacket2.html";
+    		//var getredpacet = "http://www.yongche.com/cms/page/getRedPocket.html?";
+    		
         //获取url中的参数
         function GetQueryString(name){
             var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
@@ -423,8 +429,12 @@
         var tel         =   GetQueryString('tel');
         var source      =   GetQueryString('source');
         var zt          =   GetQueryString('zt');
+        var city          =   GetQueryString('city');
         if(zt==null||source==''||source==undefined){
             zt = 0
+        }
+        if(!city){
+        		city = 'bj';
         }
         console.log(zt)
         var act_id = '';
@@ -444,8 +454,7 @@
         //获取分享数据
         var one = $.ajax({
             type:"get",
-            url:"//testing.red-packets.yongche.Org/v1/hongbao/share?order_id="+order_id+"&source="+source+"&zt="+zt,
-//            url:"https://red-packets.yongche.com/v1/hongbao/share?order_id="+order_id+"&source="+source+"&zt="+zt,
+            url: hongbao_api +"/share?order_id="+order_id+"&source="+source+"&zt="+zt+"&city="+city,
             dataType:'jsonp'
         });
         one.then(function(data) {
@@ -464,16 +473,14 @@
                 wShare.shareTitle   = resData.share_title;
                 wShare.shareContent = resData.share_desc;
 //                wShare.shareUrl = 'http://www.yongche.com/cms/page/getRedPocket.html?order_id='+order_id+'&source='+source+'&zt='+zt;
-                wShare.shareUrl = 'http://www.yongche.com/cms/page/get_redpacket2.html?order_id='+order_id+'&source='+source+'&zt='+zt;
+                wShare.shareUrl = getredpacet + '?order_id='+order_id+'&source='+source+'&zt='+zt+"&city="+city;
                 setTimeout(function(){
                     wxShareFn(wShare)
                 },0);
 
                 two = $.ajax({
                     type:"get",
-//                    url:"https://red-packets.yongche.com/v1/hongbao/apply?order_id="+order_id+"&act_id="+act_id+"&package_id="+package_id+"&tel="+tel+"&source="+source+"&zt="+zt,
-                    url:"//testing.red-packets.yongche.Org/v1/hongbao/apply?order_id="+order_id+"&act_id="+act_id+"&package_id="+package_id+"&tel="+tel+"&source="+source+"&zt="+zt,
-                    //url:"https://dujianqiang.red-packets.yongche.Org/v1/hongbao/apply?order_id="+order_id+"&act_id="+act_id+"&package_id="+package_id+"&tel="+tel+"&source="+source+"&zt="+zt,
+                    url: hongbao_api +"/apply?order_id="+order_id+"&act_id="+act_id+"&package_id="+package_id+"&tel="+tel+"&source="+source+"&zt="+zt+"&city="+city,
                     dataType:'jsonp'
                 });
                 two.then(function(data) {
@@ -572,14 +579,12 @@
             //点击修改手机号按钮
             $(".pen").click(function() {
                 localStorage.clear();
-//                window.location.href='http://www.yongche.com/cms/page/getRedPocket.html?order_id='+order_id+"&source="+source+"&zt="+zt;
-                window.location.href='http://www.yongche.com/cms/page/get_redpacket2.html?order_id='+order_id+"&source="+source+"&zt="+zt;
+                window.location.href= getredpacet+'?order_id='+order_id+"&source="+source+"&zt="+zt+"&city="+city;
             });
             //获取好友列表
             var three = $.ajax({
                 type:"get",
-//                url:"https://red-packets.yongche.com/v1/hongbao/UserList?order_id="+order_id+"&source="+source+"&tel="+tel,
-                url:"//testing.red-packets.yongche.Org/v1/hongbao/UserList?order_id="+order_id+"&source="+source+"&tel="+tel,
+                url: hongbao_api+"/UserList?order_id="+order_id+"&source="+source+"&tel="+tel+"&city="+city,
                 dataType: 'jsonp'
             });
             three.then(function(data){

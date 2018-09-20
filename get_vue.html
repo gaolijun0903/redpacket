@@ -15,10 +15,10 @@
         *{margin: 0; padding: 0; font-family: "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif; -webkit-tap-highlight-color:transparent; }
         h1,h2,h3,h4,h5,h6{ font-weight: normal; }
         a,i{ font-style: normal; }
-        html,body{ width: 100%; height: 100%; }
+        html,body{ width: 100%; height: 100%; background-color: #FFFFFF;}
         .wrapper{ width: 100%; height: 100%; background-size: 100%; background-repeat: no-repeat}
         .content{ padding:0 0.8rem 0.8rem 0.8rem; }
-        .userInfo{ width: 5.9rem; height: 0.9rem; padding: 4.22rem 0 0.36rem; }
+        .userInfo{ width: 5.9rem; height: 0.9rem; padding: 4.3rem 0 0.36rem; }
         .userHead{ width: 0.9rem; height: 0.9rem; overflow: hidden; border-radius: 100%; float: left; margin-right: 0.2rem; }
         .userSay{
             height: 0.7rem;
@@ -107,6 +107,7 @@
             z-index: 999;
             background: url('https://i3.yongche.name/media/g2/M03/12/2D/rBEBP1h8LkuIBh-ZAABfmdZKDD4AAHSgAPvjeoAAF-x009.png') #dc0019 no-repeat;
             background-size: 100% 100%;
+            /*display: none;*/
         }
         #whiteLoading{
             width: 100%;
@@ -116,7 +117,7 @@
             top: 0;
             left: 0;
             z-index: 9999;
-            display: none;
+            /*display: none;*/
         }
 .toastmsg{ position: fixed; bottom: 35%; left: 10%; width: 80%; height: 40px; line-height: 40px; background: rgba(0,0,0,0.5); color: #fff; z-index: 30; text-align: center; border-radius: 20px;font-size: 18px;}
 .slide-up-fade-enter-active { transition: all .3s ease; }
@@ -146,7 +147,7 @@
 	    </div>
 	</div>
 	<transition name="slide-up-fade">
-		<div class="toastmsg" v-show="showToast" v-html="toastMsg"></div>
+		<div class="toastmsg" v-if="showToast" v-html="toastMsg"></div>
 	</transition>
 	<div id='whiteLoading' v-show="loading"></div>
 	<div class="abnormal" v-show="abnormal" @click="reload"></div>
@@ -159,22 +160,29 @@
 new Vue({
   	el: '#app',
 	data:{
-		result_page_url:'http://www.yongche.com/cms/page/redpacket_list2.html', //红包领取结果页的地址
-		//share_api:'https://red-packets.yongche.com/V2/hongbao', //获取微信分享配置数据的接口
-		share_api:'//testing.red-packets.yongche.Org/V2/hongbao', //获取微信分享配置数据的接口
-		order_id:'106', //订单结束输入的order_id就是订单id，充返结束的order_id是充值之后的"recharge_transaction_id",
-		source:1,
+		result_page_url:'https://www.yongche.com/cms/page/redPacketList.html', //红包领取结果页的地址
+		//result_page_url:'https://www.yongche.com/cms/page/2018/09/05143522.html', //红包领取结果页的地址
+		
+		getredpacket:'https://www.yongche.com/cms/page/getRedPocket.html',  //红包登录页
+		//getredpacket:'https://www.yongche.com/cms/page/2018/09/05142312.html',
+		
+		share_api:'https://red-packets.yongche.com/V2/hongbao', //获取微信分享配置数据的接口
+		//share_api:'//testing-red-packets.yongche.Org/V2/hongbao', //获取微信分享配置数据的接口
+		
+		order_id:'', //订单结束输入的order_id就是订单id，充返结束的order_id是充值之后的"recharge_transaction_id",
+		source:'',
 		zt:0, //解析之后的用户的user_id
 		tel:'',  //输入手机号
 		city:'bj',  //定位城市
-		bg_pic:'./img/bg1.jpg', //整体背景图的地址
+		//bg_pic:'./img/bg1.jpg', //整体背景图的地址
+		bg_pic:'', //整体背景图的地址
 		rule_html:'', //活动规则
-		nickname:'lalalala', //昵称
+		nickname:'', //昵称
 		head_portrait:'https://i3.yongche.name/media/g2/M01/13/3B/rBEBP1ild-qIf3kxAAANE-sZ5JwAAHw5AL14MoAAA0r413.png', //头像
 		loading:true, //是否加载中
 		abnormal:false, //是否异常 //红包操作异常，请稍后再试
 		showToast:false,  //吐司提示框的展示与否  false-不展示，true-展示
-	  	toastMsg:'', //吐司提示信息
+	  	toastMsg:'' //吐司提示信息
 	},
 	mounted: function(){
 		this.init();
@@ -185,31 +193,25 @@ new Vue({
 	        this.source     =   this.GetQueryString('source');
 	        this.zt         =   this.GetQueryString('zt');
 	        if(this.zt==null||this.source==''||this.source==undefined){
-            	this.zt = 0;
+            		this.zt = 0;
 	        }
 	        if(this.source==null||this.source==''||this.source==undefined||this.source=='(null)'){
 	            this.source=1;
 	        }
-	       // {"order_id":"112","source":"2","zt":"26054243"}
-	        this.order_id = 112; //TODO 测试
-	        this.source = 2; //TODO 测试
-	        	this.zt = 26054243; //TODO 测试
-	        	
-	        if(localStorage.tel&&localStorage.order_id){//已经输入过手机号，直接跳转结果页
-	            var tel = localStorage.tel;
-	            window.location.href = encodeURI( this.result_page_url + "?tel=" + tel + "&order_id=" + this.order_id + "&source=" + this.source + "&zt=" + this.zt);
-	        }else{
-				this.getShareData();
-	        }
+	        //?order_id=112&source=2&zt=r2sq35fifkzcwgww
+//	        this.order_id = 112; //TODO 测试
+//	        this.source = 2; //TODO 测试
+//	        	this.zt = "r2sq35fifkzcwgww"; //TODO 测试
+
 	        var vm = this;
-	        /*this.getCurrentPosition(function(){
+	        this.getCurrentPosition(function(){
 				if(localStorage.tel&&localStorage.order_id){//已经输入过手机号，直接跳转结果页
 		            var tel = localStorage.tel;
 		            window.location.href = encodeURI( vm.result_page_url + "?tel=" + tel + "&order_id=" + vm.order_id + "&source=" + vm.source + "&zt=" + vm.zt + "&city=" + vm.city );
 		        }else{
 					vm.getShareData();
 		        }
-			});*/
+			});
 		},
 		getCurrentPosition:function(cb){  //获取当前位置
 			var vm = this;
@@ -232,7 +234,7 @@ new Vue({
 			var vm = this;
 			$.ajax({
 	            type:"get",
-	            url: this.share_api + "/share?order_id=" + this.order_id + "&source=" + this.source + "&zt=" + this.zt,
+	            url: this.share_api + "/share?order_id=" + this.order_id + "&source=" + this.source + "&zt=" + this.zt+"&city="+this.city,
 	            dataType:'jsonp',
 	            success:function(res){
 	                console.log(res);
@@ -242,20 +244,17 @@ new Vue({
 	                    wShare.shareImg     = data.share_pic;
 	                    wShare.shareTitle   = data.share_title;
 	                    wShare.shareContent = data.share_desc;
-	                    wShare.shareUrl = 'http://www.yongche.com/cms/page/get_redpacket2.html?order_id='+ vm.order_id + '&source=' + vm.source + '&zt=' + vm.zt;
-	                    
+	                    wShare.shareUrl = vm.getredpacket + '?order_id='+ vm.order_id + '&source=' + vm.source + '&zt=' + vm.zt;
 	                    wx_share(wShare);//设置微信分享的信息
 	                    
 	                    vm.bg_pic = data.h5_pic; //整体背景图
-	                    vm.rules = data.h5_rule; //活动规则文案
-	                    vm.head_portrait = data.head_image; //头像地址
+	                    vm.rule_html = data.h5_rule; //活动规则文案
+	                    if(!!data.head_image){vm.head_portrait = data.head_image; }//头像地址
 	                    vm.nickname = data.nickname; //昵称
-	                    
 	                    vm.loading = false;
-	                    
 	                } else{
 	                    vm.loading = false;
-	                    //vm.abnormal = true;  //红包操作异常，请稍后再试  //TODO
+	                    vm.abnormal = true;  //红包操作异常，请稍后再试  
 	                }
 	            }
 	        });
@@ -264,9 +263,9 @@ new Vue({
             if(/^1(?:[38]\d{3}|4[57]\d{2}|5[0-35-9]\d{2}|6[68]\d{2}|7(?:[0-35-8]\d{2}|40[0-5])|9[89]\d{2})\d{6}$/.test(this.tel)) {
                 localStorage.tel = this.tel;
                 localStorage.order_id = this.order_id;
-                window.location.href = encodeURI( this.result_page_url + "?tel=" + this.tel + "&order_id=" + this.order_id + "&source=" + this.source + "&zt=" + this.zt);
+                window.location.href = encodeURI( this.result_page_url + "?tel=" + this.tel + "&order_id=" + this.order_id + "&source=" + this.source + "&zt=" + this.zt+"&city="+this.city);
             } else{
-                vm.showToastFn('请输入正确手机号');
+                this.showToastFn('请输入正确手机号');
             }
 		},
 		reload:function(){

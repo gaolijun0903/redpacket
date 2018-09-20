@@ -221,7 +221,7 @@
 			$.ajax({
 	            type:"get",
 	//            url:"https://red-packets.yongche.com/v1/hongbao/share?order_id="+order_id+"&source="+source,
-	            url:"//testing.red-packets.yongche.Org/v1/hongbao/share?order_id="+order_id+"&source="+source+"&zt="+zt,
+	            url:"//testing.red-packets.yongche.Org/V2/hongbao/share?order_id="+order_id+"&source="+source+"&zt="+zt+"&city="+city,
 	            dataType:'jsonp',
 	            success:function(data){
 	                console.log(data);
@@ -232,9 +232,9 @@
 	                    wShare.shareTitle   = shareData.share_title;
 	                    wShare.shareContent = shareData.share_desc;
 	                    if(source==2){
-	                        wShare.shareUrl = 'http://www.yongche.com/cms/page/get_redpacket2.html?order_id='+order_id+'&source=2&zt='+zt;
+	                        wShare.shareUrl = 'http://www.yongche.com/cms/page/get_redpacket2.html?order_id='+order_id+'&source=2&zt='+zt+"&city="+city;
 	                    } else if(source==1){
-	                        wShare.shareUrl = 'http://www.yongche.com/cms/page/get_redpacket2.html?order_id='+order_id+'&source=1&zt='+zt;
+	                        wShare.shareUrl = 'http://www.yongche.com/cms/page/get_redpacket2.html?order_id='+order_id+'&source=1&zt='+zt+"&city="+city;
 	                    }
 	
 	                    wxShareFn(wShare);
@@ -257,7 +257,7 @@
 	                        if(/^1(3[0-9]|4[57]|5[0-35-9]|7[0135678]|8[0-9]|6[8])\d{8}$/.test(tel)){
 	                            localStorage.tel=tel;
 	                            localStorage.order_id=order_id;
-	                            window.location.href=encodeURI("http://www.yongche.com/cms/page/redpacket_list2.html?tel="+tel+"&order_id="+order_id+"&source="+source+"&zt="+zt);
+	                            window.location.href=encodeURI("http://www.yongche.com/cms/page/redpacket_list2.html?tel="+tel+"&order_id="+order_id+"&source="+source+"&zt="+zt+"&city="+city);
 	                        } else{
 	                            alert('请输入正确手机号');
 	                            return false;
